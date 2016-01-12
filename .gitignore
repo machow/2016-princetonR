@@ -1,0 +1,15 @@
+# Vim swap files
+*.swp
+
+# Mac OSX thing
+.DS_Store
+
+# Generated files
+**/*.md
+**/*.html
+
+# Allow markdown in root
+!/*.md
+
+# Temporary docs directory
+site

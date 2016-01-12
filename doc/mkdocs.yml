@@ -1,0 +1,12 @@
+site_name: 'PrincetonR 2016'
+#theme: 'readthedocs'
+#theme_dir: '.theme_tweak'
+repo_url: 'https://github.com/machow/2016-princetonR'
+docs_dir: '..'
+site_dir: '../site'
+pages:
+    - Home: 'index.md'
+    - Getting Started:
+        - 'Rstudio':    '0-getting-started/0a-rstudio.md'
+        - 'Rmarkdown':  '0-getting-started/0b-rmarkdown.md'
+        - 'R language': '0-getting-started/0c-rlanguage.md'
