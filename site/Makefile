@@ -7,7 +7,7 @@ build:
 	Rscript .build_docs.R
 
 deploy:
-	mkdocs gh-deploy
+	mkdocs gh-deploy --clean
 
 test:
 	mkdocs serve
