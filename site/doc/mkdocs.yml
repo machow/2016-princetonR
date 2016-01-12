@@ -2,7 +2,8 @@ site_name: 'PrincetonR 2016'
 #theme: 'readthedocs'
 #theme_dir: '.theme_tweak'
 repo_url: 'https://github.com/machow/2016-princetonR'
-docs_dir: '.'
+docs_dir: '..'
+site_dir: '../site'
 pages:
     - Home: 'index.md'
     - Getting Started:
