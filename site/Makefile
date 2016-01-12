@@ -3,6 +3,7 @@ all: build deploy
 clean: 
 	rm -rf {0,1}-*/*.{md,html}
 	rm -rf doc/[0-1]-*
+	rm -rf site
 
 build:
 	# build markdown files in the dirs they live in
