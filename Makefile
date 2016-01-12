@@ -1,4 +1,4 @@
-all: build deploy
+all: clean build deploy
 
 clean: 
 	rm -rf {0,1}-*/*.{md,html}
