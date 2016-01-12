@@ -1,0 +1,44 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "I am a readme", 
+            "title": "Home"
+        }, 
+        {
+            "location": "/0-getting-started/0a-rstudio/", 
+            "text": "", 
+            "title": "Rstudio"
+        }, 
+        {
+            "location": "/0-getting-started/0b-rmarkdown/", 
+            "text": "italic\n\n\nbold\n\n\nHeader 1\n\n\nHeader 2\n\n\nHeader 3\n\n\n\n\nitem 1\n\n\n\n\nitem 2\n\n\n\n\nsubitem a\n\n\nsubitem b\n\n\n\n\n\n\n\n\nfirst item\n\n\n\n\nanother item\n\n\nsubitem a\n\n\nsubitem b\n\n\n\n\n\n\n\n\nThese two markdown lines will be on the same line.\n\n\nSeparate new lines by pressing enter twice.\n\n\n\n\nR Code Blocks\n\n\nShow both code and outcome:\n\n\nhead(cars, params$show_n)\n\n##    speed dist\n## 1      4    2\n## 2      4   10\n## 3      7    4\n## 4      7   22\n## 5      8   16\n## 6      9   10\n## 7     10   18\n## 8     10   26\n## 9     10   34\n## 10    11   17\n\n\n\nShow only outcome:\n\n\n## [1] 2", 
+            "title": "Rmarkdown"
+        }, 
+        {
+            "location": "/0-getting-started/0b-rmarkdown/#header-1", 
+            "text": "", 
+            "title": "Header 1"
+        }, 
+        {
+            "location": "/0-getting-started/0b-rmarkdown/#header-2", 
+            "text": "", 
+            "title": "Header 2"
+        }, 
+        {
+            "location": "/0-getting-started/0b-rmarkdown/#header-3", 
+            "text": "item 1   item 2   subitem a  subitem b     first item   another item  subitem a  subitem b     These two markdown lines will be on the same line.  Separate new lines by pressing enter twice.", 
+            "title": "Header 3"
+        }, 
+        {
+            "location": "/0-getting-started/0b-rmarkdown/#r-code-blocks", 
+            "text": "Show both code and outcome:  head(cars, params$show_n)\n\n##    speed dist\n## 1      4    2\n## 2      4   10\n## 3      7    4\n## 4      7   22\n## 5      8   16\n## 6      9   10\n## 7     10   18\n## 8     10   26\n## 9     10   34\n## 10    11   17  Show only outcome:  ## [1] 2", 
+            "title": "R Code Blocks"
+        }, 
+        {
+            "location": "/0-getting-started/0c-rlanguage/", 
+            "text": "", 
+            "title": "R language"
+        }
+    ]
+}
