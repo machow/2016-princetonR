@@ -1,0 +1,6 @@
+---
+title: "Indexing and Summarizing Data"
+author: "Michael Chow"
+date: "January 12, 2016"
+output: html_document
+---
