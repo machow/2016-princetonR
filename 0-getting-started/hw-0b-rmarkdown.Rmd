@@ -1,0 +1,12 @@
+---
+title: "hw-0b-rmarkdown.Rmd"
+author: "Michael Chow"
+date: "January 14, 2016"
+output: html_document
+---
+
+Make a new rmarkdown file, and recreate the document from the image below. (Feel free to use any photo of a cat from the internet.)
+
+<div style="border: solid 1px;">
+![A beautiful report](hw-rmarkdown.png)
+</div>

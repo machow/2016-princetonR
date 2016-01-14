@@ -13,3 +13,6 @@ deploy: clean build
 
 test:
 	cd doc && mkdocs serve
+
+watch:
+	# figure this out!

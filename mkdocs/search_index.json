@@ -2,23 +2,48 @@
     "docs": [
         {
             "location": "/", 
-            "text": "I am a readme", 
+            "text": "Data Analysis and Reporting with R\n\n\nData analysis is a core skill in many fields of research. \nIn this course, you will learn the fundamentals of analyzing data with R: reading in data, processing it, and performing statistical analyses. \nIn the name of preserving your sanity (and time), we put strong emphasis on organizing your R analyses, as well as generating meaningful reports and visualizations.\nNo prior programming experience necessary. \nVery mild exposure to statistics will be useful, but isn't necessary either.\n\n\nHow to Use This Course\n\n\nBelieve it or not, everything used to create the pages of this site were done in R.\nThis was done using three tools:\n\n\n\n\nRstudio\n - an interface that makes working with R much easier.\n\n\nRmarkdown\n - a simple way to write a report that can be turned into a web page or pdf.\n\n\nR code\n - the actual R part that does the data analysis\n\n\n\n\nSet Up\n\n\nDownload the course [add screencast]\nInstall R, Rstudio, Rmarkdown [screencast for mac, windows, ubuntu]\n\n\nAsking Questions", 
             "title": "Home"
         }, 
         {
-            "location": "/0-getting-started/0a-rstudio/", 
+            "location": "/#data-analysis-and-reporting-with-r", 
+            "text": "Data analysis is a core skill in many fields of research. \nIn this course, you will learn the fundamentals of analyzing data with R: reading in data, processing it, and performing statistical analyses. \nIn the name of preserving your sanity (and time), we put strong emphasis on organizing your R analyses, as well as generating meaningful reports and visualizations.\nNo prior programming experience necessary. \nVery mild exposure to statistics will be useful, but isn't necessary either.", 
+            "title": "Data Analysis and Reporting with R"
+        }, 
+        {
+            "location": "/#how-to-use-this-course", 
+            "text": "Believe it or not, everything used to create the pages of this site were done in R.\nThis was done using three tools:   Rstudio  - an interface that makes working with R much easier.  Rmarkdown  - a simple way to write a report that can be turned into a web page or pdf.  R code  - the actual R part that does the data analysis", 
+            "title": "How to Use This Course"
+        }, 
+        {
+            "location": "/#set-up", 
+            "text": "Download the course [add screencast]\nInstall R, Rstudio, Rmarkdown [screencast for mac, windows, ubuntu]", 
+            "title": "Set Up"
+        }, 
+        {
+            "location": "/#asking-questions", 
             "text": "", 
+            "title": "Asking Questions"
+        }, 
+        {
+            "location": "/0-getting-started/0a-rstudio/", 
+            "text": "What is RStudio?\n\n\nRstudio\n is a simple interface that makes\nusing R much easier. It has separate panes for running R code, writing\nscripts and reports, and managing projects. This section will explain\nbriefly what each pane in Rstudio contains.\n\n\n\n\nThings to focus on:\n\n\n\n\nWriting in interpreter (what is R code?)\n\n\nMaking an Rmarkdown document\n\n\nScripts\n\n\nLooking at files\n\n\nWorking directory", 
             "title": "Rstudio"
         }, 
         {
+            "location": "/0-getting-started/0a-rstudio/#what-is-rstudio", 
+            "text": "Rstudio  is a simple interface that makes\nusing R much easier. It has separate panes for running R code, writing\nscripts and reports, and managing projects. This section will explain\nbriefly what each pane in Rstudio contains.   Things to focus on:   Writing in interpreter (what is R code?)  Making an Rmarkdown document  Scripts  Looking at files  Working directory", 
+            "title": "What is RStudio?"
+        }, 
+        {
             "location": "/0-getting-started/0b-rmarkdown/", 
-            "text": "italic\n\n\nbold\n\n\nHeader 1\n\n\nHeader 2\n\n\nHeader 3\n\n\n\n\nitem 1\n\n\n\n\nitem 2\n\n\n\n\nsubitem a\n\n\nsubitem b\n\n\n\n\n\n\n\n\nfirst item\n\n\n\n\nanother item\n\n\nsubitem a\n\n\nsubitem b\n\n\n\n\n\n\n\n\nThese two markdown lines will be on the same line.\n\n\nSeparate new lines by pressing enter twice.\n\n\n\n\nR Code Blocks\n\n\nShow both code and outcome:\n\n\nhead(cars, params$show_n)\n\n##    speed dist\n## 1      4    2\n## 2      4   10\n## 3      7    4\n## 4      7   22\n## 5      8   16\n## 6      9   10\n## 7     10   18\n## 8     10   26\n## 9     10   34\n## 10    11   17\n\n\n\nShow only outcome:\n\n\n## [1] 2", 
+            "text": "How to style an Rmarkdown document (Header 1)\n\n\nHeader 2\n\n\nHeader 3\n\n\nText\n\n\nitalic\n\n\nbold\n\n\nLists\n\n\n\n\nitem 1\n\n\n\n\nitem 2\n\n\n\n\nsubitem a\n\n\nsubitem b\n\n\n\n\n\n\n\n\nfirst item\n\n\n\n\nanother item\n\n\nsubitem a\n\n\nsubitem b\n\n\n\n\n\n\n\n\nSeparating lines\n\n\nThese two markdown lines will be on the same line.\n\n\nSeparate new lines by pressing enter twice.\n\n\nImages\n\n\n\n\nR Code Blocks\n\n\nShow both code and outcome:\n\n\n1 + 1\n\n## [1] 2\n\n\n\nShow only outcome:\n\n\n## [1] 2\n\n\n\nOther styles you may not need\n\n\n$$ \\sqrt{x} + \\frac{y}{x} $$\n\n\nReferences and Cheatsheets\n\n\nRmarkdown\ncheatsheet\n\n\nRmarkdown reference\nguide", 
             "title": "Rmarkdown"
         }, 
         {
-            "location": "/0-getting-started/0b-rmarkdown/#header-1", 
+            "location": "/0-getting-started/0b-rmarkdown/#how-to-style-an-rmarkdown-document-header-1", 
             "text": "", 
-            "title": "Header 1"
+            "title": "How to style an Rmarkdown document (Header 1)"
         }, 
         {
             "location": "/0-getting-started/0b-rmarkdown/#header-2", 
@@ -27,13 +52,43 @@
         }, 
         {
             "location": "/0-getting-started/0b-rmarkdown/#header-3", 
-            "text": "item 1   item 2   subitem a  subitem b     first item   another item  subitem a  subitem b     These two markdown lines will be on the same line.  Separate new lines by pressing enter twice.", 
+            "text": "", 
             "title": "Header 3"
         }, 
         {
+            "location": "/0-getting-started/0b-rmarkdown/#text", 
+            "text": "italic  bold", 
+            "title": "Text"
+        }, 
+        {
+            "location": "/0-getting-started/0b-rmarkdown/#lists", 
+            "text": "item 1   item 2   subitem a  subitem b     first item   another item  subitem a  subitem b", 
+            "title": "Lists"
+        }, 
+        {
+            "location": "/0-getting-started/0b-rmarkdown/#separating-lines", 
+            "text": "These two markdown lines will be on the same line.  Separate new lines by pressing enter twice.", 
+            "title": "Separating lines"
+        }, 
+        {
+            "location": "/0-getting-started/0b-rmarkdown/#images", 
+            "text": "", 
+            "title": "Images"
+        }, 
+        {
             "location": "/0-getting-started/0b-rmarkdown/#r-code-blocks", 
-            "text": "Show both code and outcome:  head(cars, params$show_n)\n\n##    speed dist\n## 1      4    2\n## 2      4   10\n## 3      7    4\n## 4      7   22\n## 5      8   16\n## 6      9   10\n## 7     10   18\n## 8     10   26\n## 9     10   34\n## 10    11   17  Show only outcome:  ## [1] 2", 
+            "text": "Show both code and outcome:  1 + 1\n\n## [1] 2  Show only outcome:  ## [1] 2", 
             "title": "R Code Blocks"
+        }, 
+        {
+            "location": "/0-getting-started/0b-rmarkdown/#other-styles-you-may-not-need", 
+            "text": "$$ \\sqrt{x} + \\frac{y}{x} $$", 
+            "title": "Other styles you may not need"
+        }, 
+        {
+            "location": "/0-getting-started/0b-rmarkdown/#references-and-cheatsheets", 
+            "text": "Rmarkdown\ncheatsheet  Rmarkdown reference\nguide", 
+            "title": "References and Cheatsheets"
         }, 
         {
             "location": "/0-getting-started/0c-rlanguage/", 
