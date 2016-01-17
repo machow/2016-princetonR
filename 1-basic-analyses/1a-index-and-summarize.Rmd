@@ -166,7 +166,52 @@ Now you know how to select different columns, rows, and cells of your data. Let'
 
 ``` {r}
 mean(mydata$rt)  # Gives the mean (average) of RT
+sd(mydata$rt)  # Gives the standard deviation of RT
 median(mydata$rt)  # Gives the median value
 min(mydata$rt)  # Gives the minimum value
 max(mydata$rt)  # Gives the maximum value
 ```
+
+<br/>
+<br/>
+<br/>
+
+#### Some Basic Data Visualization
+
+Let's review a few functions that create basic, simple visualizations of your data.
+
+<br/>
+
+#### Histograms
+
+One of your first steps in analyzing any data should be to look at the histogram of your dependent variable. How is the data distributed? Is it normal? Is it skewed? Are there any outliers?
+
+The hist( ) function is the simplest way to view a histogram of any vector.
+
+``` {r}
+hist(mydata$rt)
+```
+
+The data appear to be more or less normally distributed, without any notable outliers. (This makes sense, since we generated the data by sampling randomly from a normal distribution.) You can add some arguments to the hist( ) function to alter the plot. (Remember, you can use TAB while inside the function's parentheses to see a list of arguments and what they do.)
+
+``` {r}
+hist(mydata$rt, breaks = 10)  # breaks supplies the number of breaks in the histogram (???)
+hist(mydata$rt, breaks = 10, freq = F)  # setting freq = F changes the y-axis to probability density instead of count/frequency
+hist(mydata$rt, breaks = 10, density = 10)  # density sets the density of shading
+hist(mydata$rt, breaks = 10, xlab = "Reaction Time")  # xlab and ylab change the labels on the X and Y axes.
+```
+
+<br/>
+<br/>
+
+#### Boxplots
+
+A boxplot is a good way to compare the distributions of data across groups or conditions. Here's an example that plots and compares our reaction time in conditions A and B.
+
+``` {r}
+boxplot(mydata$rt ~ mydata$condition, xlab = "Condition", ylab = "Reaction Time")
+```
+
+You'll notice the new ~ symbol in the code. The ~ symbol is used in R to write formulas, with the dependent variable in the left and the grouping variable on the right. Here, we're telling R that we want a boxplot of mydata$rt, grouped according to mydata$condition.
+
+The dark solid line indicates the median value in each group. The top and bottom of the boxes are the 75th and 25th percentiles, respectively, and the endpoints reflect the range. Here, we see that reaction times are similar in conditions A and B (which makes sense, since we randomly sampled the data in each condition from the same distribution.)
