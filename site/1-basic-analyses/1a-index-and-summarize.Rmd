@@ -3,6 +3,10 @@ title: "Indexing and Summarizing Data"
 output: html_document
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
 ### Indexing Data
 
 #### Indexing with Brackets

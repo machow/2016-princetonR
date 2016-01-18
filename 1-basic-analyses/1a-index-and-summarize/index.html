@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+
+	<title>Index and summarize - PrincetonR 2016</title>
+
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../..">PrincetonR 2016</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../..">Home</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Getting Started <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../0-getting-started/0a-rstudio/">Rstudio</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../0-getting-started/0b-rmarkdown/">Rmarkdown</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../0-getting-started/0d-rbasics/">R basics</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Working with Data <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li class="active">
+    <a href="./">Index and summarize</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+            
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                
+                    <li >
+                        <a rel="next" href="../../0-getting-started/0d-rbasics/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li class="disabled">
+                        <a rel="prev" >
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a href="https://github.com/machow/2016-princetonR">
+                            
+                                <i class="fa fa-github"></i>
+                            
+                            GitHub
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#conditional-indexing">Conditional Indexing</a></li>
+        
+    
+        <li class="main "><a href="#boolean-operators-conditional-indexing">Boolean Operators &amp; Conditional Indexing</a></li>
+        
+    
+        <li class="main "><a href="#the-subset-function">The subset( ) function</a></li>
+        
+    
+        <li class="main "><a href="#summarizing-data">Summarizing Data</a></li>
+        
+            <li><a href="#some-basic-data-visualization">Some Basic Data Visualization</a></li>
+        
+            <li><a href="#histograms">Histograms</a></li>
+        
+            <li><a href="#boxplots">Boxplots</a></li>
+        
+    
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<p>```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)</p>
+<pre><code>
+### Indexing Data
+
+#### Indexing with Brackets
+
+You'll often need to refer to only part of an object, such as a single value in a vector, or a single row, column, or other portion of a data.frame. In R, you can use brackets [ ] after an object's name to select a _subset_ of the object (also called _indexing_):
+
+``` {r}
+avector &lt;- c(3, 6, 9, 12, 15, 18, 21, 24, 27)  # Let's create a vector with 9 elements.
+avector # prints the whole object
+avector[4] # prints the fourth element of the vector
+avector[4:7] # prints the 4th through 7th elements of the vector
+</code></pre>
+
+<p><br/></p>
+<p>For two dimensional objects like data.frames, you enter two numbers in the bracket: the first is the row (or rows) you want to select, and the second is the column(s):</p>
+<pre><code class="r"># First, let's recreate our random data.frame:
+mydata &lt;- data.frame(id = seq(1:50),  # create a column named &quot;id&quot; with the numbers (sequence) 1 through 50
+                     condition = rep(c(&quot;A&quot;, &quot;B&quot;), 25),  # create a &quot;condition&quot; column with A and B repeating
+                     rt = rnorm(n = 50, mean = 100, sd = 15))  # create a third column named &quot;rt&quot; with randomly generated data
+
+head(mydata)  # Let's print the head of the data for reference.
+
+mydata[1, 3]  # select a single cell in the first row, third column
+# You'll see from the printout of head(mydata) above that this is the reaction time for participant 1.
+
+mydata[3, ]  # leave one of the numbers blank if you want to select all columns for a given row
+
+mydata[, 3]  # or all rows for a given column
+
+mydata[1:10, ]  # You can select multiple rows and/or columns. Here, we're selecting the first ten rows, all columns.
+
+mydata[c(1, 3, 5),]  # This will select the first, third, and fifth rows, all columns.
+</code></pre>
+
+<p><br/></p>
+<p>Note that you always need to include the comma when using brackets to subset a two-dimensional object like a data-frame. If you try mydata[1], you will get an error (because R doesn't know whether you're referring to the first row or column)</p>
+<p><br/></p>
+<p>Usually, your data will have column names (like ours: id, condition, &amp; rt). There is a better way to select and manipulate entire columns of data by referring to the column name. In a data.frame, each column is a vector of values, and you can select that vector by calling the name of the data.frame followed by the $ symbol and then the column name:</p>
+<pre><code class="r">mydata$rt
+mydata$condition
+</code></pre>
+
+<p><br/></p>
+<p>Because each column is a vector, you can use both the dollar sign notation and brackets to select a single value from a single column:</p>
+<pre><code class="r">mydata$rt[10]
+# is the same as:
+mydata[10, 3]
+
+</code></pre>
+
+<p><br/>
+<br/></p>
+<h4 id="conditional-indexing">Conditional Indexing</h4>
+<p>Sometimes, you need to <em>conditionally</em> select part of an object - for example, you need only the rows where reaction time is greater than 100. You can use &gt;, &lt;, &gt;=, &lt;=, and == in brackets to do this:</p>
+<pre><code class="r">mydata[mydata$rt &gt; 120, ]  # Select rows of mydata where reaction time is greater than 120, all columns
+</code></pre>
+
+<p>How does this work? Let's see what's going on inside the brackets.</p>
+<pre><code class="r">mydata$rt &gt; 120
+</code></pre>
+
+<p>This returns a logical vector with 50 values (one for each row), where each value indicates whether each item in the vector mydata$rt is greater than 120. When we include this in the brackets before the comma, R will select only the rows where the statement is TRUE.</p>
+<p><br/></p>
+<p>Here are a few other examples of conditional indexing:</p>
+<pre><code class="r">mydata[mydata$id &lt;= 10,]
+mydata[mydata$condition == &quot;A&quot;, ]
+</code></pre>
+
+<p>Notice that in the second example, we use the "double equals" sign to select the rows of mydata where condition is A. We use == instead of = for conditional formatting to differentiate it from other uses of the = sign. You could read this as "mydata where condition is equal to A".</p>
+<p><br/>
+<br/></p>
+<h4 id="boolean-operators-conditional-indexing">Boolean Operators &amp; Conditional Indexing</h4>
+<p>Sometimes, you might need to use multiple conditions to select the data you want. For example, you might need all rows of mydata where reaction time is greater than 100, but less than 110. In R, you use the &amp; symbol to combine conditions when both must be true.</p>
+<pre><code class="r">mydata[mydata$rt &gt; 100 &amp; mydata$rt &lt; 110, ]  # Select rows of mydata where reaction time is greater than 100 and less than 110, all columns
+</code></pre>
+
+<p>You should use the &amp; symbol when both conditions must be TRUE in order to select the data you need.</p>
+<p><br/></p>
+<p>You might need to select part of an object depending on either one of two conditions. For example, you might need all rows of mydata where reaction time is less than 90 OR greater than 130. In R, you use the | (pronounced "or") symbol to combine conditions when either is true.</p>
+<pre><code class="r">mydata[mydata$rt &lt; 90 | mydata$rt &gt; 130, ]  # Select rows of mydata where rt is less than 90 or greater than 130, all columns
+</code></pre>
+
+<p><br/></p>
+<p>When stringing together many &amp; and | statements, you can use parentheses to control the order of operations. Suppose we need the data for only the first 10 participants with extreme reaction times (&lt; 90 or &gt; 130). We could try:</p>
+<pre><code class="r">mydata[mydata$id &lt;= 10 &amp; mydata$rt &lt; 90 | mydata$rt &gt; 130, ]
+</code></pre>
+
+<p>Uh oh. We shouldn't have that fourth row, because they aren't one of the first ten participants. R includes that row because of the last OR statement (the reaction time is &gt; 130). The correct way is:</p>
+<pre><code class="r">mydata[mydata$id &lt;= 10 &amp; (mydata$rt &lt; 90 | mydata$rt &gt; 130), ]
+</code></pre>
+
+<p>The parentheses make sure that R evaluates the OR parts before the AND part.</p>
+<p><br/>
+<br/></p>
+<h4 id="the-subset-function">The subset( ) function</h4>
+<p>There are many other ways to subset your data in R, using functions instead of brackets. One alternative is the subset( ) function. The subset function takes at least 2 <em>arguments</em>, the things you include inside of the parentheses when calling a function. The first argument is the object to be subsetted, and the second is a logical expression indicating which elements or rows to keep.</p>
+<pre><code class="r">subset(mydata, rt &gt; 130) # This selects all rows of mydata where rt &gt; 130
+</code></pre>
+
+<p>You can also indicate which columns you'd like to keep in the subset( ) function:</p>
+<pre><code class="r">subset(mydata, rt &gt; 130, c(condition, rt))  # select the condition and rt columns where rt &gt; 130
+</code></pre>
+
+<p>You can be more explicit with the arguments if you'd like:</p>
+<pre><code class="r">subset(x = mydata, subset = rt &gt; 130, select = c(condition, rt)) # This is the same as the last example, but noting each argument explicitly
+</code></pre>
+
+<p>If you don't specify the arguments in this way, R will guess which code to pass to which argument.</p>
+<p><br/>
+<br/>
+<br/></p>
+<h3 id="summarizing-data">Summarizing Data</h3>
+<p>Now you know how to select different columns, rows, and cells of your data. Let's learn some new functions that will help you summarize your data. We'll focus on the reaction time data for our dataset.</p>
+<pre><code class="r">mean(mydata$rt)  # Gives the mean (average) of RT
+sd(mydata$rt)  # Gives the standard deviation of RT
+median(mydata$rt)  # Gives the median value
+min(mydata$rt)  # Gives the minimum value
+max(mydata$rt)  # Gives the maximum value
+</code></pre>
+
+<p><br/>
+<br/>
+<br/></p>
+<h4 id="some-basic-data-visualization">Some Basic Data Visualization</h4>
+<p>Let's review a few functions that create basic, simple visualizations of your data.</p>
+<p><br/></p>
+<h4 id="histograms">Histograms</h4>
+<p>One of your first steps in analyzing any data should be to look at the histogram of your dependent variable. How is the data distributed? Is it normal? Is it skewed? Are there any outliers?</p>
+<p>The hist( ) function is the simplest way to view a histogram of any vector.</p>
+<pre><code class="r">hist(mydata$rt)
+</code></pre>
+
+<p>The data appear to be more or less normally distributed, without any notable outliers. (This makes sense, since we generated the data by sampling randomly from a normal distribution.) You can add some arguments to the hist( ) function to alter the plot. (Remember, you can use TAB while inside the function's parentheses to see a list of arguments and what they do.)</p>
+<pre><code class="r">hist(mydata$rt, breaks = 10)  # breaks supplies the number of breaks in the histogram (???)
+hist(mydata$rt, breaks = 10, freq = F)  # setting freq = F changes the y-axis to probability density instead of count/frequency
+hist(mydata$rt, breaks = 10, density = 10)  # density sets the density of shading
+hist(mydata$rt, breaks = 10, xlab = &quot;Reaction Time&quot;)  # xlab and ylab change the labels on the X and Y axes.
+</code></pre>
+
+<p><br/>
+<br/></p>
+<h4 id="boxplots">Boxplots</h4>
+<p>A boxplot is a good way to compare the distributions of data across groups or conditions. Here's an example that plots and compares our reaction time in conditions A and B.</p>
+<pre><code class="r">boxplot(mydata$rt ~ mydata$condition, xlab = &quot;Condition&quot;, ylab = &quot;Reaction Time&quot;)
+</code></pre>
+
+<p>You'll notice the new ~ symbol in the code. The ~ symbol is used in R to write formulas, with the dependent variable in the left and the grouping variable on the right. Here, we're telling R that we want a boxplot of mydata$rt, grouped according to mydata$condition.</p>
+<p>The dark solid line indicates the median value in each group. The top and bottom of the boxes are the 75th and 25th percentiles, respectively, and the endpoints reflect the range. Here, we see that reaction times are similar in conditions A and B (which makes sense, since we randomly sampled the data in each condition from the same distribution.)</p></div>
+            
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+
+        <script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script>
+        <script>var base_url = '../..';</script>
+        <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+        <script src="../../js/base.js"></script>
+        <script src="../../doc/theme_tweak/js/theme.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            From here you can search these documents. Enter
+                            your search terms below.
+                        </p>
+                        <form role="form">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                            </div>
+                        </form>
+                        <div id="mkdocs-search-results"></div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

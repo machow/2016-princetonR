@@ -9,4 +9,6 @@ pages:
     - Getting Started:
         - 'Rstudio':    '0-getting-started/0a-rstudio.md'
         - 'Rmarkdown':  '0-getting-started/0b-rmarkdown.md'
-        - 'R language': '0-getting-started/0c-rlanguage.md'
+        - 'R basics': '0-getting-started/0d-rbasics.md'
+    - Working with Data:
+        - 'Index and summarize': '1-basic-analyses/1a-index-and-summarize.Rmd'

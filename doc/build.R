@@ -1,3 +1,4 @@
 library(rmarkdown)
-rmd = grep("[:digit:]+-.*/.*\\.Rmd", dir(recursive=TRUE), value=TRUE)
-lapply(rmd, rmarkdown::render, output_format="md_document")
+rmd = grep("[0-9]+-.*/.*\\.Rmd", dir(recursive=TRUE), value=TRUE)
+print(rmd)
+lapply(rmd, rmarkdown::render, output_format=c("md_document", "html_document"))
