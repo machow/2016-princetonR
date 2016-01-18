@@ -20,7 +20,7 @@ Read and describe in data
 
 ```{r}
 dat <- read.csv('finch-beaks.csv')
-
+head(dat)
 dim(dat)
 
 table(dat$Year)

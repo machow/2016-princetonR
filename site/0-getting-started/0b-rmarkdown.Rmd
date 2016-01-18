@@ -3,25 +3,21 @@ title: "Getting Started with Rmarkdown"
 author: "Michael Chow"
 date: "January 12, 2016"
 output: html_document
+params:
+  show_n: 10
 ---
-
-How to style an Rmarkdown document (Header 1)
-=====================================================
-
-Header 2
---------
-
-### Header 3
-
-Text
-----
 
 *italic*
 
 **bold**
 
-Lists
------
+Header 1
+========
+
+Header 2
+--------
+
+### Header 3
 
 * item 1
 * item 2
@@ -32,16 +28,11 @@ Lists
 2. another item
     - subitem a
     - subitem b
-
-Separating lines
-----------------
+  
 These two markdown lines will be on the
 same line.
 
 Separate new lines by pressing enter twice.
-
-Images
-------
 
 ![A cat](boat-cat.jpg)
 
@@ -52,7 +43,7 @@ Show both code and outcome:
 
 ```{r}
 
-1 + 1
+head(cars, params$show_n)
 
 ```
 
@@ -64,14 +55,3 @@ Show only outcome:
 
 ```
 
-Other styles you may not need
-============================
-
-$$ \sqrt{x} + \frac{y}{x} $$
-
-References and Cheatsheets
-==========================
-
-[Rmarkdown cheatsheet](http://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
-
-[Rmarkdown  reference guide](http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
