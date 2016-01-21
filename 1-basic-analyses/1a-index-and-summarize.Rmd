@@ -14,6 +14,7 @@ avector <- c(3, 6, 9, 12, 15, 18, 21, 24, 27)  # Let's create a vector with 9 el
 avector # prints the whole object
 avector[4] # prints the fourth element of the vector
 avector[4:7] # prints the 4th through 7th elements of the vector
+avector[-3]  # drops the third element and prints the rest
 ```
 
 <br/>
