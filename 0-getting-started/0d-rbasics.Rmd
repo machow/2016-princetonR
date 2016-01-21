@@ -135,10 +135,9 @@ There are many __base__ functions in R, i.e. functions that are built-in and rea
 
 <br/>
 
-This code installs and loads the "psych" package, which provides some functions that are useful for doing statistical analyses of experimental data.
+This code loads the "psych" package, which provides some functions that are useful for doing statistical analyses of experimental data.
 
 ``` {r}
-install.packages("psych", repos = "http://cran.us.r-project.org/")
 library(psych)
 ```
 
