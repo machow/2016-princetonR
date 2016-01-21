@@ -170,3 +170,8 @@ geom_errorbar(aes(ymin = meanRT - se, ymax = meanRT + se), width = .25)
 ```
 
 And finally, we add another line to add errorbars to the plot using the `geom_errorbar()` function. Importantly, we need to specify how wide the bars should be using the `aes()` argument. Inside `aes()`, we set the minimum y-value for the bars to be the mean minus the standard error (meanRT - se), and the maximum y-value to be the mean plus the standard error (meanRT + se). We can also set the width using another argument.
+
+<br/>
+<br/>
+
+`ggplot2` can make many other complex visualizations. You can read more about how to use it at http://docs.ggplot2.org/current/
