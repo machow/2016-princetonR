@@ -1,6 +1,228 @@
 ---
 title: "Indexing and Summarizing Data"
-author: "Michael Chow"
-date: "January 12, 2016"
 output: html_document
 ---
+
+### Indexing Data
+
+#### Indexing with Brackets
+
+You'll often need to refer to only part of an object, such as a single value in a vector, or a single row, column, or other portion of a data.frame. In R, you can use brackets [ ] after an object's name to select a _subset_ of the object (also called _indexing_):
+
+``` {r}
+avector <- c(3, 6, 9, 12, 15, 18, 21, 24, 27)  # Let's create a vector with 9 elements.
+avector # prints the whole object
+avector[4] # prints the fourth element of the vector
+avector[4:7] # prints the 4th through 7th elements of the vector
+avector[-3]  # drops the third element and prints the rest
+```
+
+<br/>
+
+For two dimensional objects like data.frames, you enter two numbers in the bracket: the first is the row (or rows) you want to select, and the second is the column(s):
+
+``` {r}
+# First, let's recreate our random data.frame:
+mydata <- data.frame(id = seq(1:50),  # create a column named "id" with the numbers (sequence) 1 through 50
+                     condition = rep(c("A", "B"), 25),  # create a "condition" column with A and B repeating
+                     rt = rnorm(n = 50, mean = 100, sd = 15))  # create a third column named "rt" with randomly generated data
+
+head(mydata)  # Let's print the head of the data for reference.
+
+mydata[1, 3]  # select a single cell in the first row, third column
+# You'll see from the printout of head(mydata) above that this is the reaction time for participant 1.
+
+mydata[3, ]  # leave one of the numbers blank if you want to select all columns for a given row
+
+mydata[, 3]  # or all rows for a given column
+
+mydata[1:10, ]  # You can select multiple rows and/or columns. Here, we're selecting the first ten rows, all columns.
+
+mydata[c(1, 3, 5),]  # This will select the first, third, and fifth rows, all columns.
+```
+
+<br/>
+
+Note that you always need to include the comma when using brackets to subset a two-dimensional object like a data-frame. If you try mydata[1], you will get an error (because R doesn't know whether you're referring to the first row or column)
+
+<br/>
+
+Usually, your data will have column names (like ours: id, condition, & rt). There is a better way to select and manipulate entire columns of data by referring to the column name. In a data.frame, each column is a vector of values, and you can select that vector by calling the name of the data.frame followed by the $ symbol and then the column name:
+
+``` {r}
+mydata$rt
+mydata$condition
+```
+
+<br/>
+
+Because each column is a vector, you can use both the dollar sign notation and brackets to select a single value from a single column:
+
+``` {r}
+mydata$rt[10]
+# is the same as:
+mydata[10, 3]
+
+```
+
+<br/>
+<br/>
+
+#### Conditional Indexing
+
+Sometimes, you need to _conditionally_ select part of an object - for example, you need only the rows where reaction time is greater than 100. You can use >, <, >=, <=, and == in brackets to do this:
+
+``` {r}
+mydata[mydata$rt > 120, ]  # Select rows of mydata where reaction time is greater than 120, all columns
+```
+
+How does this work? Let's see what's going on inside the brackets.
+
+``` {r}
+mydata$rt > 120
+```
+
+This returns a logical vector with 50 values (one for each row), where each value indicates whether each item in the vector mydata$rt is greater than 120. When we include this in the brackets before the comma, R will select only the rows where the statement is TRUE.
+
+<br/>
+
+Here are a few other examples of conditional indexing:
+
+``` {r}
+mydata[mydata$id <= 10,]
+mydata[mydata$condition == "A", ]
+```
+
+Notice that in the second example, we use the "double equals" sign to select the rows of mydata where condition is A. We use == instead of = for conditional formatting to differentiate it from other uses of the = sign. You could read this as "mydata where condition is equal to A".
+
+<br/>
+<br/>
+
+#### Boolean Operators & Conditional Indexing
+
+Sometimes, you might need to use multiple conditions to select the data you want. For example, you might need all rows of mydata where reaction time is greater than 100, but less than 110. In R, you use the & symbol to combine conditions when both must be true.
+
+``` {r}
+mydata[mydata$rt > 100 & mydata$rt < 110, ]  # Select rows of mydata where reaction time is greater than 100 and less than 110, all columns
+```
+
+You should use the & symbol when both conditions must be TRUE in order to select the data you need.
+
+<br/>
+
+You might need to select part of an object depending on either one of two conditions. For example, you might need all rows of mydata where reaction time is less than 90 OR greater than 130. In R, you use the | (pronounced "or") symbol to combine conditions when either is true.
+
+``` {r}
+mydata[mydata$rt < 90 | mydata$rt > 130, ]  # Select rows of mydata where rt is less than 90 or greater than 130, all columns
+```
+
+<br/>
+
+When stringing together many & and | statements, you can use parentheses to control the order of operations. Suppose we need the data for only the first 10 participants with extreme reaction times (< 90 or > 130). We could try:
+
+``` {r}
+mydata[mydata$id <= 10 & mydata$rt < 90 | mydata$rt > 130, ]
+```
+
+Uh oh. We shouldn't have that fourth row, because they aren't one of the first ten participants. R includes that row because of the last OR statement (the reaction time is > 130). The correct way is:
+
+``` {r}
+mydata[mydata$id <= 10 & (mydata$rt < 90 | mydata$rt > 130), ]
+```
+
+The parentheses make sure that R evaluates the OR parts before the AND part.
+
+<br/>
+<br/>
+
+#### The subset( ) function
+
+There are many other ways to subset your data in R, using functions instead of brackets. One alternative is the subset( ) function. The subset function takes at least 2 _arguments_, the things you include inside of the parentheses when calling a function. The first argument is the object to be subsetted, and the second is a logical expression indicating which elements or rows to keep.
+
+``` {r}
+subset(mydata, rt > 130) # This selects all rows of mydata where rt > 130
+```
+
+You can also indicate which columns you'd like to keep in the subset( ) function:
+
+``` {r}
+subset(mydata, rt > 130, c(condition, rt))  # select the condition and rt columns where rt > 130
+```
+
+You can be more explicit with the arguments if you'd like:
+
+``` {r}
+subset(x = mydata, subset = rt > 130, select = c(condition, rt)) # This is the same as the last example, but noting each argument explicitly
+```
+
+If you don't specify the arguments in this way, R will guess which code to pass to which argument.
+
+<br/>
+<br/>
+<br/>
+
+### Summarizing Data
+
+Now you know how to select different columns, rows, and cells of your data. Let's learn some new functions that will help you summarize your data. We'll focus on the reaction time data for our dataset.
+
+``` {r}
+mean(mydata$rt)  # Gives the mean (average) of RT
+sd(mydata$rt)  # Gives the standard deviation of RT
+median(mydata$rt)  # Gives the median value
+min(mydata$rt)  # Gives the minimum value
+max(mydata$rt)  # Gives the maximum value
+```
+
+<br/>
+
+table( ) is another useful function. It counts the frequency of each value in a vector. For example, if we wanted to check how many participants we had per condition:
+
+``` {r}
+table(mydata$condition)
+```
+
+We can see that there are 25 participants in each condition.
+
+<br/>
+<br/>
+<br/>
+
+#### Some Basic Data Visualization
+
+Let's review a few functions that create basic, simple visualizations of your data.
+
+<br/>
+
+#### Histograms
+
+One of your first steps in analyzing any data should be to look at the histogram of your dependent variable. How is the data distributed? Is it normal? Is it skewed? Are there any outliers?
+
+The `hist()` function is the simplest way to view a histogram of any vector.
+
+``` {r}
+hist(mydata$rt)
+```
+
+The data appear to be more or less normally distributed, without any notable outliers. (This makes sense, since we generated the data by sampling randomly from a normal distribution.) You can add some arguments to the hist( ) function to alter the plot. (Remember, you can use TAB while inside the function's parentheses to see a list of arguments and what they do.)
+
+``` {r}
+hist(mydata$rt, breaks = 10)  # breaks supplies the number of breaks in the histogram
+hist(mydata$rt, breaks = 10, freq = F)  # setting freq = F changes the y-axis to probability density instead of count/frequency
+hist(mydata$rt, breaks = 10, density = 10)  # density sets the density of shading
+hist(mydata$rt, breaks = 10, xlab = "Reaction Time")  # xlab and ylab change the labels on the X and Y axes.
+```
+
+<br/>
+<br/>
+
+#### Boxplots
+
+A boxplot is a good way to compare the distributions of data across groups or conditions. Here's an example that plots and compares our reaction time in conditions A and B.
+
+``` {r}
+boxplot(mydata$rt ~ mydata$condition, xlab = "Condition", ylab = "Reaction Time")
+```
+
+You'll notice the new ~ symbol in the code. The ~ symbol is used in R to write formulas, with the dependent variable in the left and the grouping variable on the right. Here, we're telling R that we want a boxplot of mydata$rt, grouped according to mydata$condition.
+
+The dark solid line indicates the median value in each group. The top and bottom of the boxes are the 75th and 25th percentiles, respectively, and the endpoints reflect the range. Here, we see that reaction times are similar in conditions A and B (which makes sense, since we randomly sampled the data in each condition from the same distribution.)

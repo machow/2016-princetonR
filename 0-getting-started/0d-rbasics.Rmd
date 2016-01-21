@@ -1,0 +1,207 @@
+---
+title: "Basics of R"
+output: html_document
+---
+
+<br/>
+<br/>
+
+### Arithmetic operators
+
+You can do mathematical operations in R.
+
+``` {r}
+2 + 2
+10 - 2.34
+5 * 12
+99 / 11
+2^4
+(100 - 13) * 3^2
+```
+
+<br/>
+
+Spacing is not very important.
+
+``` {r}
+2    +  2
+3*4
+```
+
+<br/>
+<br/>
+
+### Objects and the Assignment Operator <-
+
+In R, you can store data, statistics, and other information in __objects__. Objects are represented by a variable name, and are created by using the assignment operator <-
+
+```{r}
+anumber <- 2 + 2  # We're storing the result of 2+2 in the object "anumber"
+anumber  # This will print the object.
+# Note: The # symbol begins a comment, and everything following a # will not affect your code.
+```
+You can also use = instead of <- ...
+``` {r}
+anumber = 9.123
+anumber
+```
+but it's better to use <- to differentiate between assigning something to an object and other uses of =, which we'll get to later. You can think of the leftwards arrow as storing data _in_ the object, rather than just setting a variable equal to some value.
+
+<br/>
+<br/>
+
+### Object Classes with class( )
+
+Every object in R has a __class__, or a type that describes the content and organization of an object.
+
+``` {r}
+class(anumber)
+```
+
+Our object 'anumber' is of the class __numeric__. There are a few other classes of object in R:
+
+``` {r}
+alogical <- TRUE  # This class is called "logical", and takes the value TRUE or FALSE
+class(alogical)
+acharacter <- "data is"  # This class is called "character", and holds strings of text
+class(acharacter)
+afactor <- factor("A")  # This is a class called "factor". It's like character, but when elements with the same text are grouped
+class(afactor)
+```
+
+... plus many other more complex classes, some of which we'll cover later.
+
+<br/>
+<br/>
+
+### Changing object classes
+
+Sometimes you need to change the class of an object. You can _coerce_ some object classes by using `as.numeric()`, `as.logical()`, `as.character()`, `as.integer()`, and `as.factor()`.
+
+``` {r}
+a <- "1"
+class(a)
+as.integer(a)
+class(as.integer(a))
+
+b <- 14
+class(b)
+as.character(b)
+class(as.character(b))
+as.factor(b)
+class(as.factor(b))
+
+c <- 1
+d <- 0
+class(c)
+class(d)
+as.logical(c)
+as.logical(d)
+class(as.logical(c))
+class(as.logical(d))
+```
+
+<br/>
+<br/>
+
+### Combining things with `c()`
+
+We use `c()` to _combine_ or _concatenate_  __elements__ (numbers, integers, logical values, or character strings):
+
+``` {r}
+somenumbers <- c(5.234, 3, 10.1, 900)
+somelogical <- c(TRUE, TRUE, FALSE, TRUE, FALSE)
+somecharacter <- c("Princeton", "Yale", "Harvard", "Penn")
+somefactor <- factor(c("A", "B", "C", "B", "B", "A"))
+somenumbers
+somelogical
+somecharacter
+somefactor
+```
+
+`c()` is a __function__ that combines various arguments or __elements__ to form a __vector__, a one-dimensional series of values. 
+
+<br/>
+
+A function is like a command that takes several __arguments__ and returns a result. In R, you call functions with a function name followed by a set of parentheses. Inside of the parentheses go what are called arguments, which indicate various details about how the function should operate. In the `c()` function, the arguments of inside the parentheses after the c are the things to be combined.
+
+<br/>
+
+We've used a few other functions so far. `class()` is a function that returns the class of the object in parentheses. `as.integer()` and the other coercion functions change the class of the object in parentheses. `factor()` encodes its argument as a factor.
+
+<br/>
+
+There are many __base__ functions in R, i.e. functions that are built-in and ready to use. Sometimes, you might need to do something that isn't easily done with the base functions. In R, you can install __packages__, which include additional functions written by other R users. You can install packages using the `install.packages()` function, and load them using `library()`.
+
+<br/>
+
+This code installs and loads the "psych" package, which provides some functions that are useful for doing statistical analyses of experimental data.
+
+``` {r}
+install.packages("psych", repos = "http://cran.us.r-project.org/")
+library(psych)
+```
+
+<br/>
+<br/>
+
+#### Tip: Help with functions
+
+You can access the help page for a function by using the ? mark. This will show you information about what the function does and which arguments you can specify. Try typing ?c into the console. ? will try to access the help page for a particular command, while ?? will search the help pages.
+
+<br/>
+<br/>
+
+### Recap: Objects, Classes, Vectors, & Functions
+
+To recap, information we work with in R is stored in __objects__. Each object has one or more __class__ (or type). Four types of __vectors__ (one dimensional objects) are:
+
+* __Numeric__: numbers with decimal values
+* __Integers__: numbers without decimal values
+* __Logical__: True or False
+* __Character__: strings of text
+* __Factor__: strings of text that indicate groups, conditions, etc.
+
+__Functions__ are commands that execute code, and contain __arguments__ that detail how to do so.
+
+<br/>
+<br/>
+
+### data.frames - Another kind of object
+
+A data.frame is another kind of object, where data are stored in a matrix or table-like format. Let's try creating a simple data frame with one row and three columns for each participant in a research study: "id" contains a unique number to identify each participant, "condition" indicates whether each participant was assigned to condition A or condition B, and "rt" is the reaction time in a task.
+
+You'll see some new functions in the code below. 
+
+``` {r}
+# We use data.frame() to create a new data.frame from scratch.
+mydata <- data.frame(id = seq(1:50),  # create a column named "id" with the numbers (sequence) 1 through 50
+                     condition = rep(c("A", "B"), 25),  # create a "condition" column with A and B repeating
+                     rt = rnorm(n = 50, mean = 100, sd = 15))  # create a third column named "rt" with randomly generated data
+class(mydata)
+```
+
+Now we've created a data.frame with 50 rows and 3 columns. You can examine the first few rows by using the head( ) function:
+
+``` {r}
+head(mydata)
+```
+
+You can also view the full data.frame itself by entering "mydata", or you can view it in a table by entering View(mydata) or clicking on the mydata object in the Environment tab in RStudio.
+
+<br/>
+<br/>
+
+### Reading data from a file
+
+Often, the data you want to analyze is located in a separate file. To work with it in R, you need to _read_ in the data.
+
+<br/>
+
+There are a few different functions for reading data into R, depending on the type of data file.
+
+``` {r}
+mydata <- read.csv("~/2016-princetonR/data/training_long.csv") # read.csv() is used for Comma Separated Value files
+#mydata <- read.delim() # read.delim() is used when your data are separated/delimited by the TAB character
+#mydata <- read.table()
+```
