@@ -174,6 +174,16 @@ max(mydata$rt)  # Gives the maximum value
 ```
 
 <br/>
+
+table( ) is another useful function. It counts the frequency of each value in a vector. For example, if we wanted to check how many participants we had per condition:
+
+``` {r}
+table(mydata$condition)
+```
+
+We can see that there are 25 participants in each condition.
+
+<br/>
 <br/>
 <br/>
 
@@ -196,7 +206,7 @@ hist(mydata$rt)
 The data appear to be more or less normally distributed, without any notable outliers. (This makes sense, since we generated the data by sampling randomly from a normal distribution.) You can add some arguments to the hist( ) function to alter the plot. (Remember, you can use TAB while inside the function's parentheses to see a list of arguments and what they do.)
 
 ``` {r}
-hist(mydata$rt, breaks = 10)  # breaks supplies the number of breaks in the histogram (???)
+hist(mydata$rt, breaks = 10)  # breaks supplies the number of breaks in the histogram
 hist(mydata$rt, breaks = 10, freq = F)  # setting freq = F changes the y-axis to probability density instead of count/frequency
 hist(mydata$rt, breaks = 10, density = 10)  # density sets the density of shading
 hist(mydata$rt, breaks = 10, xlab = "Reaction Time")  # xlab and ylab change the labels on the X and Y axes.
