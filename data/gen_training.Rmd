@@ -1,0 +1,75 @@
+---
+title: "Generate Working Memory Training Data"
+author: "Michael Chow"
+date: "January 21, 2016"
+output: html_document
+---
+
+```{r}
+library(reshape2)
+library(ggplot2)
+
+set.seed(123)
+
+N = 10
+SD = 4
+effect_pre <- 30
+cond_names <- paste(rep(c('wm', 'aer', 'combo'), 2), rep(c('pre', 'post'), each=3), sep='_')
+means <- c(rep(effect_pre, 3), # pre scores
+           effect_pre + 10,    # wm
+           effect_pre + 11,  # aer
+           effect_pre + 15)    # combo
+
+out <- sapply(means, function(x) rnorm(10, x, SD))
+
+dat <- data.frame(out)
+names(dat) <- cond_names
+dat$subject <- 1:N
+
+mdat <- melt(id.var = 'subject', dat, variable.name = 'session', value.name = 'wm_score')
+mdat[,c('cond', 'time')] <- colsplit(mdat$session, '_', c('cond', 'time'))
+```
+
+### Save data
+
+```{r}
+write.csv(dat, file='training_long.csv', row.names=FALSE)
+write.csv(mdat, file='training_wide.csv', row.names=FALSE)
+```
+
+Anova
+-------------------------------------------------------------------------------
+### Pre-test
+```{r}
+summary(aov(wm_score ~ cond, data=subset(mdat, time=='pre')))
+```
+
+### Post-test
+```{r}
+summary(fit <- aov(wm_score ~ cond, data=subset(mdat, time=='post')))
+TukeyHSD(fit)
+```
+
+
+Plots
+----------------------------------------------------------------------------
+
+### Plot all data
+```{r, message=FALSE}
+dodge <- position_dodge(.1)
+qplot(time, wm_score, data=mdat, color=cond, position=dodge)
+```
+
+### Plot mean and se
+(could also use `describe` function in psych)
+
+```{r, message=FALSE}
+mean_se <- aggregate(wm_score ~ cond + time, mdat, function(x) {
+  c(m = mean(x), se = sqrt(var(x)/length(x)))
+})
+mean_se[c('m', 'sd')] <- mean_se$wm_score
+
+ggplot(mean_se, aes(time, m, color=cond)) + 
+  geom_point(position=dodge) +
+  geom_errorbar(aes(ymin=m-sd, ymax=m+sd), width=.1, position=dodge)
+```
