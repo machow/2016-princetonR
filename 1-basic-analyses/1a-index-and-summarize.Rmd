@@ -197,7 +197,7 @@ Let's review a few functions that create basic, simple visualizations of your da
 
 One of your first steps in analyzing any data should be to look at the histogram of your dependent variable. How is the data distributed? Is it normal? Is it skewed? Are there any outliers?
 
-The hist( ) function is the simplest way to view a histogram of any vector.
+The `hist()` function is the simplest way to view a histogram of any vector.
 
 ``` {r}
 hist(mydata$rt)

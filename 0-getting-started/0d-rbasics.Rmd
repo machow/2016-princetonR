@@ -139,7 +139,7 @@ This code installs and loads the "psych" package, which provides some functions 
 
 ``` {r}
 # install.packages("psych", repos = "http://cran.us.r-project.org/")
-library("psych")
+library(psych)
 ```
 
 <br/>
