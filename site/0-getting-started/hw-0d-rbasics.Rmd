@@ -1,0 +1,29 @@
+---
+title: "Basics of R - Homework "
+output: html_document
+---
+
+<br/>
+<br/>
+
+1. Create a vector named "zip" with 5 elements, each one a digit of Princeton's zip code (08544).
+
+``` {r}
+
+```
+
+<br/>
+
+2.  Check the class of "zip".
+
+``` {r}
+
+```
+
+<br/>
+
+3. Install the "effsize" package.
+
+``` {r}
+
+```

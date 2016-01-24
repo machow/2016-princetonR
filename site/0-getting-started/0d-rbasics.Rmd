@@ -20,6 +20,15 @@ You can do mathematical operations in R.
 ```
 
 <br/>
+
+Spacing is not very important.
+
+``` {r}
+2    +  2
+3*4
+```
+
+<br/>
 <br/>
 
 ### Objects and the Assignment Operator <-
@@ -56,6 +65,8 @@ alogical <- TRUE  # This class is called "logical", and takes the value TRUE or 
 class(alogical)
 acharacter <- "data is"  # This class is called "character", and holds strings of text
 class(acharacter)
+afactor <- factor("A")  # This is a class called "factor". It's like character, but when elements with the same text are grouped
+class(afactor)
 ```
 
 ... plus many other more complex classes, some of which we'll cover later.
@@ -65,7 +76,7 @@ class(acharacter)
 
 ### Changing object classes
 
-Sometimes you need to change the class of an object. You can _coerce_ some object classes by using as.numeric( ), as.logical( ), as.character( ), and as.integer( ).
+Sometimes you need to change the class of an object. You can _coerce_ some object classes by using `as.numeric()`, `as.logical()`, `as.character()`, `as.integer()`, and `as.factor()`.
 
 ``` {r}
 a <- "1"
@@ -77,6 +88,8 @@ b <- 14
 class(b)
 as.character(b)
 class(as.character(b))
+as.factor(b)
+class(as.factor(b))
 
 c <- 1
 d <- 0
@@ -91,30 +104,55 @@ class(as.logical(d))
 <br/>
 <br/>
 
-### Combining things with c( )
+### Combining things with `c()`
 
-We use c( ) to _combine_ or _concatenate_  __elements__ (numbers, integers, logical values, or character strings):
+We use `c()` to _combine_ or _concatenate_  __elements__ (numbers, integers, logical values, or character strings):
 
 ``` {r}
 somenumbers <- c(5.234, 3, 10.1, 900)
 somelogical <- c(TRUE, TRUE, FALSE, TRUE, FALSE)
 somecharacter <- c("Princeton", "Yale", "Harvard", "Penn")
+somefactor <- factor(c("A", "B", "C", "B", "B", "A"))
 somenumbers
 somelogical
 somecharacter
+somefactor
 ```
 
-c( ) is a __function__ that combines various arguments or __elements__ to form a __vector__, a one-dimensional series of values. class( ) is also a function, which returns the class of the object in parentheses.
+`c()` is a __function__ that combines various arguments or __elements__ to form a __vector__, a one-dimensional series of values. 
 
+<br/>
+
+A function is like a command that takes several __arguments__ and returns a result. In R, you call functions with a function name followed by a set of parentheses. Inside of the parentheses go what are called arguments, which indicate various details about how the function should operate. In the `c()` function, the arguments of inside the parentheses after the c are the things to be combined.
+
+<br/>
+
+We've used a few other functions so far. `class()` is a function that returns the class of the object in parentheses. `as.integer()` and the other coercion functions change the class of the object in parentheses. `factor()` encodes its argument as a factor.
+
+<br/>
+
+There are many __base__ functions in R, i.e. functions that are built-in and ready to use. Sometimes, you might need to do something that isn't easily done with the base functions. In R, you can install __packages__, which include additional functions written by other R users. You can install packages using the `install.packages()` function, and load them using `library()`.
+
+<br/>
+
+This code installs and loads the "psych" package, which provides some functions that are useful for doing statistical analyses of experimental data.
+
+``` {r, eval=FALSE}
+install.packages("psych", repos = "http://cran.us.r-project.org/")
+library(psych)
+```
+
+<br/>
 <br/>
 
 #### Tip: Help with functions
-You can access the help page for a function by using the ? mark. Try typing ?c into the console. ? will try to access the help page for a particular command, while ?? will search the help pages.
+
+You can access the help page for a function by using the ? mark. This will show you information about what the function does and which arguments you can specify. Try typing ?c into the console. ? will try to access the help page for a particular command, while ?? will search the help pages.
 
 <br/>
 <br/>
 
-### Recap: Objects, Classes, & Vectors
+### Recap: Objects, Classes, Vectors, & Functions
 
 To recap, information we work with in R is stored in __objects__. Each object has one or more __class__ (or type). Four types of __vectors__ (one dimensional objects) are:
 
@@ -122,6 +160,9 @@ To recap, information we work with in R is stored in __objects__. Each object ha
 * __Integers__: numbers without decimal values
 * __Logical__: True or False
 * __Character__: strings of text
+* __Factor__: strings of text that indicate groups, conditions, etc.
+
+__Functions__ are commands that execute code, and contain __arguments__ that detail how to do so.
 
 <br/>
 <br/>
@@ -160,7 +201,7 @@ Often, the data you want to analyze is located in a separate file. To work with 
 There are a few different functions for reading data into R, depending on the type of data file.
 
 ``` {r}
-#mydata <- read.csv() # read.csv() is used for Comma Separated Value files
+mydata <- read.csv("../data/training_long.csv") # read.csv() is used for Comma Separated Value files
 #mydata <- read.delim() # read.delim() is used when your data are separated/delimited by the TAB character
 #mydata <- read.table()
 ```

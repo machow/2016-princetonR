@@ -1,0 +1,53 @@
+---
+title: "Indexing and Summarizing Data - Homework "
+output: html_document
+---
+
+<br/>
+<br/>
+
+1. Create a vector named "odd" with all odd numbers from 1 - 13.
+
+``` {r}
+
+```
+
+<br/>
+
+2. Select the third element and raise it to the 5th power.
+
+``` {r}
+
+```
+
+<br/>
+
+3. Create another vector named "even" with all even numbers from 2 - 14.
+
+``` {r}
+
+```
+
+<br/>
+
+4. Create a data.frame named "numbers" with two columns: one named "apple" that contains your vector of odd numbers, and one named "orange" that contains your vector of even numbers.
+
+``` {r}
+
+```
+
+<br/>
+
+5. Select all rows where "orange" is greater than 7.
+
+``` {r}
+
+```
+
+<br/>
+
+6. Calculate the mean of the full "apple" column.
+
+``` {r}
+
+```

@@ -1,7 +1,7 @@
 all: clean build
 
 clean: 
-	rm -rf {0,1}-*/*.{md,html}
+	rm -rf {0,1,2}-*/*.{md,html}
 	rm -rf site
 
 build:

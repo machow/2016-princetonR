@@ -1,14 +1,20 @@
 site_name: 'PrincetonR 2016'
-#theme: 'readthedocs'
-#theme_dir: '.theme_tweak'
+theme: 'readthedocs'
+theme_dir: 'theme_tweak'
 repo_url: 'https://github.com/machow/2016-princetonR'
 docs_dir: '..'
 site_dir: '../site'
 pages:
     - Home: 'index.md'
-    - Getting Started:
-        - 'Rstudio':    '0-getting-started/0a-rstudio.md'
-        - 'Rmarkdown':  '0-getting-started/0b-rmarkdown.md'
-        - 'R basics': '0-getting-started/0d-rbasics.md'
-    - Working with Data:
-        - 'Index and summarize': '1-basic-analyses/1a-index-and-summarize.Rmd'
+#    - Getting Started:
+#        - 'Rstudio':    '0-getting-started/0a-rstudio.md'
+#        - 'Rmarkdown':  '0-getting-started/0b-rmarkdown.md'
+#        - 'R language': '0-getting-started/0d-rbasics.md'
+#    - Basics:
+#        - 'Indexing and Summarizing': '1-basic-analyses/1a-index-and-summarize.md'
+#        - 't-tests and ANOVA':        '1-basic-analyses/1b-t-tests-and-anova.md'
+#        - 'plotting with ggplot':     '1-basic-analyses/1c-visualization.md'          
+#    - Looking Forward:
+#        - 'common errors and debugging': '2-r-ecosystem/2b-common-errors.md'
+#        - 'advanced R': '2-r-ecosystem/2c-advanced-r.Rmd'
+#        - 'useful packages': '2-r-ecosystem/2d-more-packages.md'
