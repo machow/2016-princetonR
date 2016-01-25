@@ -1,7 +1,5 @@
 ---
 title: "Getting Started with Rmarkdown"
-author: "Michael Chow"
-date: "January 12, 2016"
 output: html_document
 ---
 
@@ -65,10 +63,33 @@ Show only outcome:
 
 ```
 
+Don't run code: 
+
+```{r, eval=FALSE}
+1 + 1
+```
+
+You can make a figure wider: 
+
+```{r, fig.width=8, fig.height=4}
+plot(1:10)
+```
+
+
 Other styles you may not need
 ============================
 
 $$ \sqrt{x} + \frac{y}{x} $$
+
+Dealing with Errors
+===================
+
+```
+  ```r
+  library(knitr)
+  opts_knit$set(error=TRUE)
+  ```
+```
 
 References and Cheatsheets
 ==========================

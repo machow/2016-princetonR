@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <title>Rstudio - PrincetonR 2016</title>
+  
+
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Rstudio";
+    var mkdocs_page_url = "/0-getting-started/0a-rstudio/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script src="../../js/theme.js"></script> 
+  <script src="../../doc/theme_tweak/js/theme.js"></script>
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> PrincetonR 2016</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../..">Home</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Getting Started</span></li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Rstudio</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#data-analysis-and-reporting-with-r">Data Analysis and Reporting with R</a></li>
+                
+                    <li><a class="toctree-l4" href="#slides-here">slides here</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#about-us">About us</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#r-can-do-a-lot-of-things">R can do a lot of things</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#this-week">This week</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#setup">Setup</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#overview-of-r-and-making-reports-in-rmarkdown">Overview of R and making reports in Rmarkdown</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#r-in-a-nutshell">R in a nutshell</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#markdown-in-a-nutshell">Markdown in a nutshell</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#why-combine-the-two">Why combine the two?</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#r-markdown-rmarkdown">R + markdown == Rmarkdown</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#r-markdown-rmarkdown-cont">R + markdown == Rmarkdown (cont.)</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#getting-familiar-with-rstudio">Getting familiar with Rstudio</a></li>
+                
+                    <li><a class="toctree-l4" href="#basic-layout">Basic Layout</a></li>
+                
+                    <li><a class="toctree-l4" href="#concepts">Concepts</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#resources">Resources</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../0b-rmarkdown/">Rmarkdown</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../0c-rbasics/">R language</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">PrincetonR 2016</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Getting Started &raquo;</li>
+        
+      
+    
+    <li>Rstudio</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        
+          <a href="https://github.com/machow/2016-princetonR" class="icon icon-github"> Edit on GitHub</a>
+        
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="data-analysis-and-reporting-with-r">Data Analysis and Reporting with R</h1>
+<p>author: Michael Chow and Nick Rohrbaugh</p>
+<h3 id="slides-here"><a href="../0a-rstudio.html">slides here</a></h3>
+<h1 id="about-us">About us</h1>
+<h1 id="r-can-do-a-lot-of-things">R can do a lot of things</h1>
+<h1 id="this-week">This week</h1>
+<p><strong>Mon</strong> -- Overview of R and making reports in Rmarkdown</p>
+<p><strong>Wed</strong> -- Basic tools and analyses</p>
+<p><strong>Fri</strong> -- Broad survey of other things</p>
+<h1 id="setup">Setup</h1>
+<p><img alt="" src="../img/rstudio.png" /></p>
+<p>Create a folder for R Projects</p>
+<h1 id="overview-of-r-and-making-reports-in-rmarkdown">Overview of R and making reports in Rmarkdown</h1>
+<ul>
+<li>what is R?</li>
+<li>what is Rmarkdown?</li>
+<li>using Rstudio for great justice.</li>
+</ul>
+<h1 id="r-in-a-nutshell">R in a nutshell</h1>
+<pre><code class="r">&gt; 1 + 1
+</code></pre>
+
+<pre><code>[1] 2
+</code></pre>
+
+<pre><code class="r">&gt; plot(sin(1:100*pi/50), type='l', col='blue')
+</code></pre>
+
+<p><img src="0a-rstudio-figure/unnamed-chunk-1-1.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" style="display: block; margin: auto;" /></p>
+<h1 id="markdown-in-a-nutshell">Markdown in a nutshell</h1>
+<p><img alt="markdown" src="../img/markdown.png" /></p>
+<h1 id="why-combine-the-two">Why combine the two?</h1>
+<p><img alt="" src="../img/princeton_map.png" /></p>
+<hr />
+<p><img alt="" src="../img/princeton_report.png" /></p>
+<h1 id="r-markdown-rmarkdown">R + markdown == Rmarkdown</h1>
+<ul>
+<li>
+<p>Making reports with R is easy!</p>
+</li>
+<li>
+<p>Combine R and markdown</p>
+</li>
+</ul>
+<hr />
+<p><img alt="" src="../img/R_report_blank.png" /></p>
+<h1 id="r-markdown-rmarkdown-cont">R + markdown == Rmarkdown (cont.)</h1>
+<ul>
+<li>
+<p>Show R output in meaningful way</p>
+</li>
+<li>
+<p>No copy / paste madness</p>
+</li>
+<li>
+<p>Connect code with end goal</p>
+</li>
+</ul>
+<hr />
+<p><img alt="" src="../img/R_report_complete.png" /></p>
+<h1 id="getting-familiar-with-rstudio">Getting familiar with Rstudio</h1>
+<h3 id="basic-layout">Basic Layout</h3>
+<ul>
+<li>Console</li>
+<li>Files</li>
+<li>Scripts</li>
+<li>(Environment)</li>
+</ul>
+<hr />
+<h3 id="concepts">Concepts</h3>
+<ul>
+<li>Working Directory</li>
+<li>Workspace</li>
+<li>Knitting</li>
+</ul>
+<h1 id="resources">Resources</h1>
+<p>Interactive: http://tryr.codeschool.com/</p>
+<p>More interactive: http://datacamp.com</p>
+<p>Many links: https://www.rstudio.com/resources/training/online-learning/</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../0b-rmarkdown/" class="btn btn-neutral float-right" title="Rmarkdown"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../.." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/machow/2016-princetonR" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../.." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../0b-rmarkdown/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>

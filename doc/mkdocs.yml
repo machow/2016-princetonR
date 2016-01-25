@@ -6,10 +6,10 @@ docs_dir: '..'
 site_dir: '../site'
 pages:
     - Home: 'index.md'
-#    - Getting Started:
-#        - 'Rstudio':    '0-getting-started/0a-rstudio.md'
-#        - 'Rmarkdown':  '0-getting-started/0b-rmarkdown.md'
-#        - 'R language': '0-getting-started/0d-rbasics.md'
+    - Getting Started:
+        - 'Rstudio':    '0-getting-started/0a-rstudio.md'
+        - 'Rmarkdown':  '0-getting-started/0b-rmarkdown.md'
+        - 'R language': '0-getting-started/0c-rbasics.md'
 #    - Basics:
 #        - 'Indexing and Summarizing': '1-basic-analyses/1a-index-and-summarize.md'
 #        - 't-tests and ANOVA':        '1-basic-analyses/1b-t-tests-and-anova.md'

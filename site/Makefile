@@ -8,7 +8,7 @@ build:
 	# build markdown files in the dirs they live in
 	Rscript doc/build.R 
 
-deploy: clean build
+deploy:
 	cd doc && mkdocs gh-deploy --clean
 
 test:

@@ -1,7 +1,7 @@
 ---
 title: "Untitled"
 author: "Michael Chow"
-date: "January 24, 2016"
+date: "January 25, 2016"
 output: html_document
 ---
 
@@ -11,6 +11,9 @@ When you click the **Knit** button a document will be generated that includes bo
 
 ```{r}
 summary(cars)
+```
+```{r}
+a
 ```
 
 You can also embed plots, for example:

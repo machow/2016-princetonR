@@ -19,7 +19,7 @@ Read and describe in data
 -------------------------
 
 ```{r}
-dat <- read.csv('finch-beaks.csv')
+dat <- read.csv('../data/finch-beaks.csv')
 head(dat, 3)
 
 boxplot(Depth ~ Year, data=dat)
@@ -29,5 +29,5 @@ t-test: do the `1978` finches have larger beaks?
 ------------------------------------------------
 
 ```{r}
-t.test(dat$Depth ~ dat$Year)
+t.test(Depth ~ Year, data=dat)
 ```

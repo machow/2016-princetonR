@@ -24,7 +24,8 @@ This week
 Setup
 ========================================================
 ![](img/rstudio.png)
-Link to website
+
+Create a folder for R Projects
 
 Overview of R and making reports in Rmarkdown
 ========================================================
@@ -76,3 +77,27 @@ R + markdown == Rmarkdown (cont.)
 
 Getting familiar with Rstudio
 ========================================================
+
+### Basic Layout
+
+* Console
+* Files
+* Scripts
+* (Environment)
+
+***
+
+### Concepts
+
+* Working Directory
+* Workspace
+* Knitting
+
+Resources
+========================================================
+
+Interactive: http://tryr.codeschool.com/
+
+More interactive: http://datacamp.com
+
+Many links: https://www.rstudio.com/resources/training/online-learning/

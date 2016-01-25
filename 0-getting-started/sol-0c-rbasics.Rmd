@@ -1,0 +1,62 @@
+---
+title: "Basics of R - Homework Solution"
+output: html_document
+---
+
+<br/>
+<br/>
+
+1. Create a vector named "zip" with 5 elements, each one a digit of Princeton's zip code (08544).
+
+``` {r}
+zip <- c(0, 8, 5, 4, 4)
+```
+
+<br/>
+
+2.  Check the class of "zip".
+
+``` {r}
+class(zip)
+```
+
+<br/>
+
+3. Install the "effsize" package (but set the code chunk to not **eval**uate).
+
+``` {r, eval=FALSE}
+install.packages("effsize", repos = "http://cran.us.r-project.org/")
+```
+
+4. Read in `finch-beaks.csv` from the data folder, assign it to the variable name `dat`. Then, use the `summary` function on `dat`.
+
+```{r}
+dat <- read.csv('../data/finch-beaks.csv')
+```
+
+**bonus**
+
+The finch beak data were collected on an island in the Gallapagos by two researchers from Princeton, who measured the beak size of finches. The data contains two columns.
+
+* Year -- when the measurement was taken
+* Depth -- the size of the beak
+
+If you named your data correctly above, you should be able to look at, for example, the `Year` column by using `dat$Year`. 
+Try out some of the following functions on one of these columns: `boxplot`, `histogram`, `range`.
+
+```{r}
+
+boxplot(dat$Depth)
+hist(dat$Depth)
+range(dat$Depth)
+
+```
+
+Now, try reading in `finch-beaks.tsv` in the data folder
+
+```{r}
+
+head(read.table('../data/finch-beaks.tsv'))
+
+```
+

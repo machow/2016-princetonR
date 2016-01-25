@@ -36,7 +36,7 @@ Spacing is not very important.
 In R, you can store data, statistics, and other information in __objects__. Objects are represented by a variable name, and are created by using the assignment operator <-
 
 ```{r}
-anumber <- 2 + 2  # We're storing the result of 2+2 in the object "anumber"
+anumber <- 2 + 2  # We're storing the result of 2+2 in the variable "anumber"
 anumber  # This will print the object.
 # Note: The # symbol begins a comment, and everything following a # will not affect your code.
 ```
@@ -45,7 +45,7 @@ You can also use = instead of <- ...
 anumber = 9.123
 anumber
 ```
-but it's better to use <- to differentiate between assigning something to an object and other uses of =, which we'll get to later. You can think of the leftwards arrow as storing data _in_ the object, rather than just setting a variable equal to some value.
+but it's better to use <- to differentiate between assigning something to a variable and other uses of =, which we'll get to later. You can think of the leftwards arrow as storing data _in_ the object, rather than just setting a variable equal to some value.
 
 <br/>
 <br/>
@@ -131,14 +131,13 @@ We've used a few other functions so far. `class()` is a function that returns th
 
 <br/>
 
-There are many __base__ functions in R, i.e. functions that are built-in and ready to use. Sometimes, you might need to do something that isn't easily done with the base functions. In R, you can install __packages__, which include additional functions written by other R users. You can install packages using the `install.packages()` function, and load them using `library()`.
+There are many __base__ functions in R, i.e. functions that are built-in and ready to use. Sometimes, you might need to do something that isn't easily done with the base functions. In R, you can install __packages__, which include additional functions written by other R users. You can install packages using the `install.packages()` function, and load them using `library()`. For example, to install the psych library, use `install.packages('psych')`.
 
 <br/>
 
-This code installs and loads the "psych" package, which provides some functions that are useful for doing statistical analyses of experimental data.
+This code loads the "psych" package, which provides some functions that are useful for doing statistical analyses of experimental data.
 
-``` {r, eval=FALSE}
-install.packages("psych", repos = "http://cran.us.r-project.org/")
+``` {r}
 library(psych)
 ```
 
@@ -187,7 +186,15 @@ Now we've created a data.frame with 50 rows and 3 columns. You can examine the f
 head(mydata)
 ```
 
-You can also view the full data.frame itself by entering "mydata", or you can view it in a table by entering View(mydata) or clicking on the mydata object in the Environment tab in RStudio.
+You can also view the full data.frame itself by entering "mydata", or you can view it in a table by entering `View(mydata)` or clicking on the mydata object in the Environment tab in RStudio.
+
+A simple way to summarize data is through the `summary` function:
+
+```{r}
+summary(mydata)
+```
+
+
 
 <br/>
 <br/>

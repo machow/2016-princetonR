@@ -8,10 +8,9 @@ output: html_document
 
 ### Data Visualization with `ggplot2`
 
-`ggplot2` is a package for plotting data. The "gg" stands for "grammar of graphics". To use `ggplot2`, first you must install and load the package.
+`ggplot2` is a package for plotting data. The "gg" stands for "grammar of graphics". To use `ggplot2`, first you must load the package (after installing).
 
 ``` {r}
-#install.packages("ggplot2", repos = "http://cran.us.r-project.org/")
 library(ggplot2)
 ```
 
