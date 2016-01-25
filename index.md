@@ -83,5 +83,18 @@ As we go through the course, we will update this section based on questions that
 1. **I'm on Windows 10 and can't open Rstudio**  
 Assuming you've installed Rstudio succesfully, look at [how to find apps in Windows 10](http://windows.microsoft.com/en-us/windows-10/getstarted-find-all-your-apps-and-programs).
 
+2. **What is a working directory?**  [watch (1.5 mins)](https://v.usetapes.com/MeLR93hNHx)  
+It's where R begins when looking for a file. So if I am in my `~/home` directory, and use the command `read.csv('a_file.csv')`, then R will look for the file in that directory. 
+
+3. **What if my document won't knit?**  [watch (2 mins)](https://v.usetapes.com/T0Waq0pcUm)  
+You should (1) set your working directory to where the document is, (2) clear your environment, (3) run all the chunks in your document to look for errors.
+R normally stops knitting when it runs into errors.
+However, putting the chunk below at the top of your document will print R errors in your report.
+````
+```{r}
+library(knitr)
+opts_chunk$set(error=TRUE)
+```
+````
 
 
