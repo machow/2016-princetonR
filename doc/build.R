@@ -5,4 +5,4 @@ if (!interactive()){
   rmd = commandArgs(trailing=TRUE)
 }
 print(rmd)
-lapply(rmd, rmarkdown::render, output_format=c("md_document", "html_document"))
+lapply(rmd, rmarkdown::render, output_format=c("md_document"))

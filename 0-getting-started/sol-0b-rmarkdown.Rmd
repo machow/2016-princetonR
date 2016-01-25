@@ -1,0 +1,44 @@
+---
+title: "hw-0b-rmarkdown.Rmd"
+author: "YOUR NAME HERE"
+date: "January 14, 2016"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 2
+---
+
+Example Rmarkdown report
+========================
+
+Rstudio Cat
+-----------
+
+![Rstudio cat](img/rstudio_cat.png)
+
+*This cat* is doing the following **two things**:
+
+1. using Rstudio
+2. wearing a collar
+
+Rmarkdown resources
+-------------------------
+
+* http://rmarkdown.rstudio.com/
+* [markdown basics (http://rmarkdown.rstudio.com/authoring_basics.html)](http://rmarkdown.rstudio.com/authoring_basics.html)
+
+Basic R chunk
+-------------------------
+```{r}
+plot(1:10)
+```
+
+
+Problem (write this markdown document)
+========================================
+
+Make a new rmarkdown file, and recreate the document from the image below. (Feel free to use any photo of a cat from the internet.)
+
+<div style="border: solid 1px;">
+![A beautiful report](img/hw-0b-example.png)
+</div>

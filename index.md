@@ -7,6 +7,13 @@ In the name of preserving your sanity (and time), we put strong emphasis on orga
 No prior programming experience necessary. 
 Very mild exposure to statistics will be useful, but isn't necessary either.
 
+**For simple, interactive lessons on some of the topics we'll cover, see [tryr.codeschool.com](http://tryr.codeschool.com)**
+
+Instructors and Princeton Email: 
+
+* Michael Chow [machow]
+* Nick Rohrbaugh [rohrbaugh]
+
 How to Use This Course
 ----------------------
 
@@ -17,11 +24,64 @@ This was done using three tools:
 2. **Rmarkdown** - a simple way to write a report that can be turned into a web page or pdf.
 3. **R code** - the actual R part that does the data analysis
 
-Set Up
-------
-
-Download the course [add screencast]
-Install R, Rstudio, Rmarkdown [screencast for mac, windows, ubuntu]
+(we will add materials on Sunday. For now, please follow the directions in the Set Up section).
 
 Asking Questions
 ----------------
+
+We've set up a spot for asking questions on [piazza (WS 145)](https://piazza.com/class/ij36cl80oo3hf). 
+If you've never used the site before, [here's a brief video on how to sign up and add the course](https://piazza.com/class/ij36cl80oo3hf).
+
+Set Up
+------
+
+### Screencasts
+
+In case you have trouble with installing R and Rstudio, these screencasts below will walk through the process.
+
+* [Windows](https://v.usetapes.com/NkPfAN5oqb)
+* [Mac](https://v.usetapes.com/rDOfGV0tT7)
+* [Linux (Debian)](https://v.usetapes.com/nIEVMCLXMx)
+
+### Install R, Rstudio, Rmarkdown
+
+Go to [this site](https://cran.rstudio.com/) and download R by clicking the link corresponding to your operating system (shown below).
+
+![](doc/img/r-project-site.png)
+
+Once R is installed, [download and install Rstudio](https://www.rstudio.com/products/rstudio/download/). 
+At this point, you should be able to open Rstudio, but check the screencasts above if you're not sure how.
+Once you open Rstudio, it should look something like this the image below.
+
+<img src="doc/img/rstudio-1.png" style="max-width: 600px;">
+
+### Make sure it works
+
+The following screenshots will walk you through testing that everything is ready to go. If it's not clear, here is a [very short screen cast of the process](https://v.usetapes.com/N96lrCj193). We'll explain what's happening in more detail during the workshop.
+
+**Create an Rmarkdown document, and install the required packages:**
+
+<img src="doc/img/rstudio-2.png" style="max-width: 300px;">
+<img src="doc/img/rstudio-3.png" style="max-width: 300px;">
+
+** Test generating a report **
+
+<img src="doc/img/rstudio-4.png" style="max-width: 300px;">
+<img src="doc/img/rstudio-5.png" style="max-width: 300px;">
+
+** Profit **
+
+When your report succesfully generates, you should something similar to the image below. We'll explain what each step of this process means during the course.
+
+<img src="doc/img/rstudio-6.png" style="max-width: 500px;">
+
+FAQ
+----------------
+
+As we go through the course, we will update this section based on questions that arise.
+
+1. **I'm on Windows 10 and can't open Rstudio**  
+Assuming you've installed Rstudio succesfully, look at [how to find apps in Windows 10](http://windows.microsoft.com/en-us/windows-10/getstarted-find-all-your-apps-and-programs).
+
+
+

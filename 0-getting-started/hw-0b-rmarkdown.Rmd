@@ -1,0 +1,25 @@
+---
+title: "hw-0b-rmarkdown.Rmd"
+author: "YOUR NAME HERE"
+date: "January 14, 2016"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 2
+---
+
+Example Rmarkdown report
+========================
+
+WRITE THE EXAMPLE REPORT IN THIS SPOT
+
+
+
+Problem (write this markdown document)
+========================================
+
+Make a new rmarkdown file, and recreate the document from the image below. (Feel free to use any photo of a cat from the internet.)
+
+<div style="border: solid 1px;">
+![A beautiful report](img/hw-0b-example.png)
+</div>

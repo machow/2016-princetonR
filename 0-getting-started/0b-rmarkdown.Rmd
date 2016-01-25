@@ -1,9 +1,9 @@
 ---
 title: "Getting Started with Rmarkdown"
-author: "Michael Chow"
-date: "January 12, 2016"
 output: html_document
 ---
+
+[download rmarkdown file](0b-rmarkdown.Rmd)
 
 How to style an Rmarkdown document (Header 1)
 =====================================================
@@ -65,14 +65,42 @@ Show only outcome:
 
 ```
 
+Don't run code: 
+
+```{r, eval=FALSE}
+1 + 1
+```
+
+You can make a figure wider: 
+
+```{r, fig.width=8, fig.height=4}
+plot(1:10)
+```
+
+
 Other styles you may not need
 ============================
 
 $$ \sqrt{x} + \frac{y}{x} $$
 
+Dealing with Errors
+===================
+
+```
+  ```r
+  library(knitr)
+  opts_knit$set(error=TRUE)
+  ```
+```
+
 References and Cheatsheets
 ==========================
 
-[Rmarkdown cheatsheet](http://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+* [Rmarkdown homepage](http://rmarkdown.rstudio.com/)
+* [html document format](http://rmarkdown.rstudio.com/html_document_format.html)
+* [using code chunks](http://rmarkdown.rstudio.com/authoring_rcodechunks.html)
 
-[Rmarkdown  reference guide](http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
+**PDFs**
+
+* [cheatsheet](http://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+* [reference guide](http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)

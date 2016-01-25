@@ -1,0 +1,92 @@
+Data Analysis and Reporting with R
+========================================================
+author: Michael Chow and Nick Rohrbaugh
+
+### [slides here](0a-rstudio.html)
+
+About us
+========================================================
+
+
+R can do a lot of things
+========================================================
+
+
+This week
+========================================================
+
+**Mon** -- Overview of R and making reports in Rmarkdown
+
+**Wed** -- Basic tools and analyses
+
+**Fri** -- Broad survey of other things
+
+Setup
+========================================================
+![](img/rstudio.png)
+
+Create a folder for R Projects
+
+Overview of R and making reports in Rmarkdown
+========================================================
+
+* what is R?
+* what is Rmarkdown?
+* using Rstudio for great justice.
+
+R in a nutshell
+========================================================
+
+```{r, comment="", prompt=TRUE, fig.width=15, fig.align='center', fig.height=5}
+1 + 1
+
+plot(sin(1:100*pi/50), type='l', col='blue')
+```
+
+
+Markdown in a nutshell
+========================================================
+![markdown](img/markdown.png)
+
+Why combine the two?
+========================================================
+
+![](img/princeton_map.png)
+***
+![](img/princeton_report.png)
+
+R + markdown == Rmarkdown
+========================================================
+* Making reports with R is easy!
+
+* Combine R and markdown
+
+***
+![](img/R_report_blank.png)
+
+R + markdown == Rmarkdown (cont.)
+========================================================
+* Show R output in meaningful way
+
+* No copy / paste madness
+
+* Connect code with end goal
+
+***
+![](img/R_report_complete.png)
+
+Getting familiar with Rstudio
+========================================================
+
+### Basic Layout
+
+* Console
+* Files
+* Scripts
+* (Environment)
+
+### Concepts
+
+* Working Directory
+* Workspace
+* Knitting

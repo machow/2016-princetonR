@@ -8,6 +8,9 @@
 **/*.md
 **/*.html
 
+# Adobe illustrator files
+**/*.ai
+
 # Allow markdown in root
 !/*.md
 
