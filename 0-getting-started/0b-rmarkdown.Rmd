@@ -3,8 +3,6 @@ title: "Getting Started with Rmarkdown"
 output: html_document
 ---
 
-[download rmarkdown file](0b-rmarkdown.Rmd)
-
 How to style an Rmarkdown document (Header 1)
 =====================================================
 
