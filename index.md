@@ -24,7 +24,7 @@ This was done using three tools:
 2. **Rmarkdown** - a simple way to write a report that can be turned into a web page or pdf.
 3. **R code** - the actual R part that does the data analysis
 
-(we will add materials on Sunday. For now, please follow the directions in the Set Up section).
+I'll walk you through getting the course materials, but in case you want to try beforehand there are instructions in [this clip](https://v.usetapes.com/53RibkfUIx).
 
 Asking Questions
 ----------------
