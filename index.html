@@ -18,6 +18,12 @@
   <link rel="stylesheet" href="./css/theme.css" type="text/css" />
   <link rel="stylesheet" href="./css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="./css/highlight.css">
+  <link href="./site/css/highlight.css" rel="stylesheet">
+  <link href="./site/css/theme.css" rel="stylesheet">
+  <link href="./site/css/theme_extra.css" rel="stylesheet">
+  <link href="./site/site/css/highlight.css" rel="stylesheet">
+  <link href="./site/site/css/theme.css" rel="stylesheet">
+  <link href="./site/site/css/theme_extra.css" rel="stylesheet">
 
   
   <script>
@@ -31,6 +37,26 @@
   <script type="text/javascript" src="./js/highlight.pack.js"></script>
   <script src="./js/theme.js"></script> 
   <script src="./doc/theme_tweak/js/theme.js"></script>
+  <script src="./site/doc/theme_tweak/js/theme.js"></script>
+  <script src="./site/js/highlight.pack.js"></script>
+  <script src="./site/js/jquery-2.1.1.min.js"></script>
+  <script src="./site/js/modernizr-2.8.3.min.js"></script>
+  <script src="./site/js/theme.js"></script>
+  <script src="./site/mkdocs/js/lunr-0.5.7.min.js"></script>
+  <script src="./site/mkdocs/js/mustache.min.js"></script>
+  <script src="./site/mkdocs/js/require.js"></script>
+  <script src="./site/mkdocs/js/search.js"></script>
+  <script src="./site/mkdocs/js/text.js"></script>
+  <script src="./site/site/doc/theme_tweak/js/theme.js"></script>
+  <script src="./site/site/js/highlight.pack.js"></script>
+  <script src="./site/site/js/jquery-2.1.1.min.js"></script>
+  <script src="./site/site/js/modernizr-2.8.3.min.js"></script>
+  <script src="./site/site/js/theme.js"></script>
+  <script src="./site/site/mkdocs/js/lunr-0.5.7.min.js"></script>
+  <script src="./site/site/mkdocs/js/mustache.min.js"></script>
+  <script src="./site/site/mkdocs/js/require.js"></script>
+  <script src="./site/site/mkdocs/js/search.js"></script>
+  <script src="./site/site/mkdocs/js/text.js"></script>
 
   
 </head>
@@ -193,9 +219,26 @@ Once you open Rstudio, it should look something like this the image below.</p>
 <h2 id="faq">FAQ</h2>
 <p>As we go through the course, we will update this section based on questions that arise.</p>
 <ol>
-<li><strong>I'm on Windows 10 and can't open Rstudio</strong><br />
-Assuming you've installed Rstudio succesfully, look at <a href="http://windows.microsoft.com/en-us/windows-10/getstarted-find-all-your-apps-and-programs">how to find apps in Windows 10</a>.</li>
+<li>
+<p><strong>I'm on Windows 10 and can't open Rstudio</strong><br />
+Assuming you've installed Rstudio succesfully, look at <a href="http://windows.microsoft.com/en-us/windows-10/getstarted-find-all-your-apps-and-programs">how to find apps in Windows 10</a>.</p>
+</li>
+<li>
+<p><strong>What is a working directory?</strong>  <a href="https://v.usetapes.com/MeLR93hNHx">watch (1.5 mins)</a><br />
+It's where R begins when looking for a file. So if I am in my <code>~/home</code> directory, and use the command <code>read.csv('a_file.csv')</code>, then R will look for the file in that directory. </p>
+</li>
+<li>
+<p><strong>What if my document won't knit?</strong>  <a href="https://v.usetapes.com/T0Waq0pcUm">watch (2 mins)</a><br />
+You should (1) set your working directory to where the document is, (2) clear your environment, (3) run all the chunks in your document to look for errors.
+R normally stops knitting when it runs into errors.
+However, putting the chunk below at the top of your document will print R errors in your report.</p>
+</li>
 </ol>
+<pre><code>```{r}
+library(knitr)
+opts_chunk$set(error=TRUE)
+```
+</code></pre>
               
             </div>
           </div>
@@ -243,5 +286,5 @@ Assuming you've installed Rstudio succesfully, look at <a href="http://windows.m
 
 <!--
 MkDocs version : 0.15.0.dev
-Build Date UTC : 2016-01-25 08:45:01.499332
+Build Date UTC : 2016-01-25 22:27:05.843917
 -->
