@@ -24,10 +24,11 @@ out <- sapply(means, function(x) rnorm(10, x, SD))
 
 dat <- data.frame(out)
 names(dat) <- cond_names
-dat$subject <- 1:N
+dat$subject = 1:10
 
 mdat <- melt(id.var = 'subject', dat, variable.name = 'session', value.name = 'wm_score')
 mdat[,c('cond', 'time')] <- colsplit(mdat$session, '_', c('cond', 'time'))
+mdat$subject <- 1:30
 ```
 
 ### Save data
