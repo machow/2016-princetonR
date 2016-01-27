@@ -12,9 +12,4 @@ install:
   - ./travis-tool.sh install_github rstudio/rmarkdown
 script:
   - make
-
-r_packages:
-  - reshape2
-  - psych
-  - ggplot2
-  - plyr
+  - R -e "install.packages(c('reshape2', 'ggplot2', 'plyr', 'psych'))"
