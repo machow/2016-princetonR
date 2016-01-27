@@ -1,0 +1,102 @@
+---
+title: "t-test and anova homework"
+output: html_document
+---
+
+Main Problems
+-------------
+
+1. R has a function called `options` that let's you configure different settings.
+   One particularly useful setting is digits. 
+   As you do this homework, modify the number of digits and see what happens.
+
+```{r}
+options(digits=7)
+```
+
+2. Read in the working memory training data `training_long.csv` in the data folder.
+
+```{r}
+
+```
+
+3. Make a boxplot of the pre-test data.
+
+```{r}
+
+```
+
+
+3. Report the relevant descriptives, anova, and Tukey's HSD for the pre-test data.
+
+```{r}
+
+```
+
+4. Use an inline chunk to report the p-value from the wm vs combo t-test in Tukey's HSD. The p-value is ____.
+
+Reshaping
+---------
+
+Another interesting use of formulas is in the `reshape2` package. 
+This package focuses on how you can represent your data. 
+For example, the training data has a separate row for the post- and pre-test scores, so each subject's data takes two rows.
+
+```{r}
+dat <- read.csv('../data/training_long.csv')
+subset(dat, subject == 1)
+```
+
+However, we can "cast" it so that rather than being separate rows, `pre` and `post` have their own columns on a single row. 
+Essentially, we we're saying "make each `subject` their own line, but make `time` the columns". 
+In this sense, the formula is `rows ~ columns`
+
+```{r}
+library(reshape2)
+dcast(dat, subject ~ time, value.var="wm_score")     # the d stands for data.frame!
+```
+
+1. Below, I set up a data set that already exists in R called `ChickWeight`. Which of the two variables in this data could be cast into columns? Which should be the `value.var`? Try it below.
+
+```{r}
+ChickWeight$Diet = NULL
+head(ChickWeight)
+```
+
+2. Below I've read in and modified `training_long.csv`. In this simulation, each subject completed all 3 training conditions. In this sense, both condition **and** time can be cast on the columns. Given what you've learned about formulas, try to modify the formula from the example to do this below.
+
+```{r}
+train_long <- read.csv('../data/training_long.csv')
+train_long$subject <- 1:10
+
+# cast here
+dcast(train_long, subject ~ cond + time, value.var = "wm_score")
+```
+
+3. Now that each subject has a row, you can use the `plot` function to make scatterplots.  Use indexing to remove the subject column, then try `plot(YOURDATANAME)`.
+
+```{r}
+
+```
+
+4. Plot uses formulas, too. Based on what you've learned about formulas, replace `LEFT` and `RIGHT` below to make a scatter plot.
+
+(remember, `a ~ b` can be read "a by b")
+
+```{r}
+x <- rnorm(8)
+wide <- data.frame(subject = 1:8,
+                     x = x,
+                     y = x + rnorm(8))
+long <- melt(wide, id.vars='subject', variable.name='group')
+long
+
+#plot(LEFT ~ RIGHT, data=long)
+```
+
+References
+----------
+
+[simple reshape2 tutorial](http://seananderson.ca/2013/10/19/reshape.html)
+[original reshape2 article](http://www.jstatsoft.org/v21/i12)
+[reshape2 home page]

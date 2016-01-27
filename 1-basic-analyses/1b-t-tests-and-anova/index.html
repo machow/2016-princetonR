@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <title>t-tests and ANOVA - PrincetonR 2016</title>
+  
+
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "t-tests and ANOVA";
+    var mkdocs_page_url = "/1-basic-analyses/1b-t-tests-and-anova/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script src="../../js/theme.js"></script> 
+  <script src="../../doc/theme_tweak/js/theme.js"></script>
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> PrincetonR 2016</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../..">Home</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Getting Started</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../0-getting-started/0a-rstudio/">Rstudio</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../0-getting-started/0b-rmarkdown/">Rmarkdown</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../0-getting-started/0c-rbasics/">R language</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Basics</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../1a-index-and-summarize/">Indexing and Summarizing</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">t-tests and ANOVA</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#background">Background</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#analyses">Analyses</a></li>
+                
+                    <li><a class="toctree-l4" href="#what-is-the-data-argument">What is the data argument?</a></li>
+                
+                    <li><a class="toctree-l4" href="#what-are-r-formulas">What are R formulas?</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#boxplots">Boxplots</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#descriptives">Descriptives</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#anova">ANOVA</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#references">References</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../1c-visualization/">plotting with ggplot</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">PrincetonR 2016</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Basics &raquo;</li>
+        
+      
+    
+    <li>t-tests and ANOVA</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        
+          <a href="https://github.com/machow/2016-princetonR" class="icon icon-github"> Edit on GitHub</a>
+        
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="background">Background</h1>
+<p>This simulated data is based off of training study run by David Moreau.
+In this study, he examined which of the following programs would be
+better for improving spatial memory:</p>
+<ol>
+<li>Aerobic exercise (<code>aer</code>) -- basically running on a treadmill.</li>
+<li>Working memory training (<code>wm</code>) -- memorizing locations while doing a
+    distracting task on the computer.</li>
+<li>Something he called Designed Sport Training (<code>combo</code>), meant to
+    combine spatial memory with consistent exercise.</li>
+</ol>
+<p>As shown in the diagram below, participants were tested on their spatial
+memory, then assigned to a program for a month. Afterward, their spatial
+memory was tested again. <img alt="Sport training" src="../img/sport-training.png" /></p>
+<pre><code>wm_dat &lt;- read.csv('../data/training_long.csv')
+</code></pre>
+<p>The working memory data set has 60 rows and 5 columns. Below are the
+first 5 rows.</p>
+<pre><code>head(wm_dat, 5)
+
+  subject session wm_score cond time
+1       1  wm_pre 27.75810   wm  pre
+2       2  wm_pre 29.07929   wm  pre
+3       3  wm_pre 36.23483   wm  pre
+4       4  wm_pre 30.28203   wm  pre
+5       5  wm_pre 30.51715   wm  pre
+</code></pre>
+<p>Note that the <code>session</code>, <code>cond</code>, and <code>time</code> columns are factors.</p>
+<pre><code>str(wm_dat)
+
+'data.frame':   60 obs. of  5 variables:
+ $ subject : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ session : Factor w/ 6 levels "aer_post","aer_pre",..: 6 6 6 6 6 6 6 6 6 6 ...
+ $ wm_score: num  27.8 29.1 36.2 30.3 30.5 ...
+ $ cond    : Factor w/ 3 levels "aer","combo",..: 3 3 3 3 3 3 3 3 3 3 ...
+ $ time    : Factor w/ 2 levels "post","pre": 2 2 2 2 2 2 2 2 2 2 ...
+</code></pre>
+<p>The levels of each factor are..</p>
+<ul>
+<li><strong>session</strong>: aer_post, aer_pre, combo_post, combo_pre, wm_post,
+    wm_pre</li>
+<li><strong>cond</strong>: aer, combo, wm</li>
+<li><strong>time</strong>: post, pre</li>
+</ul>
+<p><strong>Note that session is just another way of expressing cond and time
+together</strong>. That is, <code>session</code> is the same as..</p>
+<pre><code>paste(wm_dat$cond, wm_dat$time, sep="_")
+
+ [1] "wm_pre"     "wm_pre"     "wm_pre"     "wm_pre"     "wm_pre"    
+ [6] "wm_pre"     "wm_pre"     "wm_pre"     "wm_pre"     "wm_pre"    
+[11] "aer_pre"    "aer_pre"    "aer_pre"    "aer_pre"    "aer_pre"   
+[16] "aer_pre"    "aer_pre"    "aer_pre"    "aer_pre"    "aer_pre"   
+[21] "combo_pre"  "combo_pre"  "combo_pre"  "combo_pre"  "combo_pre" 
+[26] "combo_pre"  "combo_pre"  "combo_pre"  "combo_pre"  "combo_pre" 
+[31] "wm_post"    "wm_post"    "wm_post"    "wm_post"    "wm_post"   
+[36] "wm_post"    "wm_post"    "wm_post"    "wm_post"    "wm_post"   
+[41] "aer_post"   "aer_post"   "aer_post"   "aer_post"   "aer_post"  
+[46] "aer_post"   "aer_post"   "aer_post"   "aer_post"   "aer_post"  
+[51] "combo_post" "combo_post" "combo_post" "combo_post" "combo_post"
+[56] "combo_post" "combo_post" "combo_post" "combo_post" "combo_post"
+</code></pre>
+<h1 id="analyses">Analyses</h1>
+<h2 id="what-is-the-data-argument">What is the data argument?</h2>
+<p>Note that just like the <code>with</code> function, many functions like <code>boxplot</code>
+have an argument to let your refer directly to columns of data without
+using the <code>$</code> character. This is done using the <code>data</code> argument</p>
+<h2 id="what-are-r-formulas">What are R formulas?</h2>
+<p>Formulas in R are created using the <code>~</code> character. The formula <code>A ~ B</code>
+is best read as "A by B". In addition, formula <code>A ~ B + C</code> can be read
+as "A by B <strong>and C</strong>". This is well illustrated by the <code>boxplot</code>
+function.</p>
+<h1 id="boxplots">Boxplots</h1>
+<pre><code>boxplot(wm_score ~ session, data=wm_dat)   # wm scores by session
+</code></pre>
+<p><img alt="" src="../1b-t-tests-and-anova_files/figure-markdown_strict/unnamed-chunk-5-1.png" /></p>
+<pre><code># if you want, the line below is equivalent
+# boxplot(data=wm_dat, wm_score ~ session)
+</code></pre>
+<p>However, as noted above the <code>session</code> column is a combination of <code>cond</code>
+<strong>and</strong> <code>time</code>. We can use the <code>+</code> sign in a formula to make the same
+plot with these columns.</p>
+<pre><code>boxplot(wm_score ~ time + cond, data=wm_dat)     # wm scores by cond and time
+</code></pre>
+<p><img alt="" src="../1b-t-tests-and-anova_files/figure-markdown_strict/unnamed-chunk-6-1.png" /></p>
+<p>It's a little annoying that the post- and pre-test measures are
+alternating in the plot.</p>
+<h1 id="descriptives">Descriptives</h1>
+<pre><code>library(psych)
+descript &lt;- describeBy(wm_dat$wm_score, group=wm_dat$session, mat = TRUE, digits=1)
+descript
+
+   item     group1 vars  n mean  sd median trimmed mad  min  max range
+11    1   aer_post    1 10 41.0 4.3   39.8    40.5 3.6 35.9 49.7  13.7
+12    2    aer_pre    1 10 30.8 4.2   31.5    31.1 3.5 22.1 37.1  15.0
+13    3 combo_post    1 10 45.9 3.4   45.7    46.1 1.8 38.8 51.1  12.3
+14    4  combo_pre    1 10 28.3 3.7   27.3    28.1 2.7 23.3 35.0  11.8
+15    5    wm_post    1 10 41.3 2.1   42.0    41.4 2.4 38.5 43.6   5.1
+16    6     wm_pre    1 10 30.3 3.8   29.7    30.1 3.0 24.9 36.9  11.9
+   skew kurtosis  se
+11  0.7     -0.9 1.4
+12 -0.5     -0.4 1.3
+13 -0.3     -0.3 1.1
+14  0.5     -1.2 1.2
+15 -0.2     -1.9 0.7
+16  0.5     -1.1 1.2
+</code></pre>
+<p>Note that the post scores seem to differ between conditions:</p>
+<pre><code>descript[c(1,3,5), c('group1', 'mean', 'se')]
+
+       group1 mean  se
+11   aer_post 41.0 1.4
+13 combo_post 45.9 1.1
+15    wm_post 41.3 0.7
+</code></pre>
+<h1 id="anova">ANOVA</h1>
+<p>Assuming all of the pre-test scores were the same, we will just consider
+the post-test scores. The <code>aov</code> function let's use test whether the mean
+scores on the post-test were the same for all conditions.</p>
+<p>In terms of formulas we should say, "do <code>wm_score</code> means differ by
+<code>cond</code>".</p>
+<pre><code>post &lt;- subset(wm_dat, time == "post")
+fit &lt;- aov(wm_score ~ cond, data=post)
+report &lt;- anova(fit)
+report
+
+Analysis of Variance Table
+
+Response: wm_score
+          Df Sum Sq Mean Sq F value   Pr(&gt;F)   
+cond       2 151.58  75.789  6.5084 0.004933 **
+Residuals 27 314.41  11.645                    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+</code></pre>
+<p>The p-value is 0.0049, so there is strong evidence that the means are
+<strong>not</strong> equal.</p>
+<p>We can use <a href="https://en.wikipedia.org/wiki/Tukey%27s_range_test">Tukey's Honestly Significant
+Differences</a>
+procedure to test exactly which means are different from each other.
+This procedure tries to take into account the number of tests we've
+performed, in order to control the <a href="https://en.wikipedia.org/wiki/Familywise_error_rate#Tukey.27s_procedure">Family Wise Error
+Rate</a>.</p>
+<pre><code>tuk &lt;- TukeyHSD(fit)
+tuk
+
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = wm_score ~ cond, data = post)
+
+$cond
+                diff       lwr       upr     p adj
+combo-aer  4.9216061  1.137791  8.705421 0.0089245
+wm-aer     0.3230403 -3.460774  4.106855 0.9756233
+wm-combo  -4.5985658 -8.382381 -0.814751 0.0148740
+</code></pre>
+<p>Each row is a test. For example, the first row tests whether the combo
+and aerobic means differed from eachother, and there is strong evidence
+(p = 0.0089245). Overall, it appears there's strong evidence that
+participants in the combo condition did better than the other two.</p>
+<p>The test that Tukey's HSD is modifying is called a
+<a href="https://en.wikipedia.org/wiki/Student%27s_t-test">t-test</a>. We can run
+it directly using the <code>t.test</code> function..</p>
+<pre><code>post_wm_combo &lt;- subset(wm_dat, time == "post" &amp; cond %in% c('wm', 'combo'))
+# notice that we use the same formula as the anova
+t.test(wm_score ~ session, data=post_wm_combo)
+
+
+    Welch Two Sample t-test
+
+data:  wm_score by session
+t = 3.6147, df = 14.966, p-value = 0.002556
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 1.886415 7.310716
+sample estimates:
+mean in group combo_post    mean in group wm_post 
+                45.88674                 41.28818
+</code></pre>
+<h1 id="references">References</h1>
+<ul>
+<li><a href="http://stackoverflow.com/a/12135122/1144523">stack overflow post on rounding
+    output</a></li>
+<li><a href="http://www.statmethods.net/stats/anova.html">Quick-R anova page</a></li>
+<li><a href="http://ww2.coastal.edu/kingw/statistics/R-tutorials/formulae.html">model formulas for
+    regression</a></li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../1c-visualization/" class="btn btn-neutral float-right" title="plotting with ggplot"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../1a-index-and-summarize/" class="btn btn-neutral" title="Indexing and Summarizing"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/machow/2016-princetonR" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../1a-index-and-summarize/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../1c-visualization/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>

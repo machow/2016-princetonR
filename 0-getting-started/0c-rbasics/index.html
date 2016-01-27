@@ -18,12 +18,6 @@
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="../../css/highlight.css">
-  <link href="../../site/css/highlight.css" rel="stylesheet">
-  <link href="../../site/css/theme.css" rel="stylesheet">
-  <link href="../../site/css/theme_extra.css" rel="stylesheet">
-  <link href="../../site/site/css/highlight.css" rel="stylesheet">
-  <link href="../../site/site/css/theme.css" rel="stylesheet">
-  <link href="../../site/site/css/theme_extra.css" rel="stylesheet">
 
   
   <script>
@@ -37,26 +31,6 @@
   <script type="text/javascript" src="../../js/highlight.pack.js"></script>
   <script src="../../js/theme.js"></script> 
   <script src="../../doc/theme_tweak/js/theme.js"></script>
-  <script src="../../site/doc/theme_tweak/js/theme.js"></script>
-  <script src="../../site/js/highlight.pack.js"></script>
-  <script src="../../site/js/jquery-2.1.1.min.js"></script>
-  <script src="../../site/js/modernizr-2.8.3.min.js"></script>
-  <script src="../../site/js/theme.js"></script>
-  <script src="../../site/mkdocs/js/lunr-0.5.7.min.js"></script>
-  <script src="../../site/mkdocs/js/mustache.min.js"></script>
-  <script src="../../site/mkdocs/js/require.js"></script>
-  <script src="../../site/mkdocs/js/search.js"></script>
-  <script src="../../site/mkdocs/js/text.js"></script>
-  <script src="../../site/site/doc/theme_tweak/js/theme.js"></script>
-  <script src="../../site/site/js/highlight.pack.js"></script>
-  <script src="../../site/site/js/jquery-2.1.1.min.js"></script>
-  <script src="../../site/site/js/modernizr-2.8.3.min.js"></script>
-  <script src="../../site/site/js/theme.js"></script>
-  <script src="../../site/site/mkdocs/js/lunr-0.5.7.min.js"></script>
-  <script src="../../site/site/mkdocs/js/mustache.min.js"></script>
-  <script src="../../site/site/mkdocs/js/require.js"></script>
-  <script src="../../site/site/mkdocs/js/search.js"></script>
-  <script src="../../site/site/mkdocs/js/text.js"></script>
 
   
 </head>
@@ -138,6 +112,35 @@
                 
             
             </ul>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Basics</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../1-basic-analyses/1a-index-and-summarize/">Indexing and Summarizing</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../1-basic-analyses/1b-t-tests-and-anova/">t-tests and ANOVA</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../1-basic-analyses/1c-visualization/">plotting with ggplot</a>
         
     </li>
 
@@ -432,12 +435,12 @@ examine the first few rows by using the head( ) function:</p>
 <pre><code>head(mydata)
 
 ##   id condition        rt
-## 1  1         A  92.86635
-## 2  2         B 108.13016
-## 3  3         A  98.52080
-## 4  4         B 120.22016
-## 5  5         A  99.49950
-## 6  6         B 103.85130
+## 1  1         A  99.21827
+## 2  2         B 121.28731
+## 3  3         A 105.02078
+## 4  4         B  97.96730
+## 5  5         A  83.37108
+## 6  6         B 104.58375
 </code></pre>
 <p>You can also view the full data.frame itself by entering "mydata", or
 you can view it in a table by entering <code>View(mydata)</code> or clicking on the
@@ -446,12 +449,12 @@ mydata object in the Environment tab in RStudio.</p>
 <pre><code>summary(mydata)
 
 ##        id        condition       rt        
-##  Min.   : 1.00   A:25      Min.   : 52.78  
-##  1st Qu.:13.25   B:25      1st Qu.: 90.58  
-##  Median :25.50             Median : 98.15  
-##  Mean   :25.50             Mean   : 97.19  
-##  3rd Qu.:37.75             3rd Qu.:104.77  
-##  Max.   :50.00             Max.   :139.28
+##  Min.   : 1.00   A:25      Min.   : 67.10  
+##  1st Qu.:13.25   B:25      1st Qu.: 85.94  
+##  Median :25.50             Median : 96.99  
+##  Mean   :25.50             Mean   : 97.83  
+##  3rd Qu.:37.75             3rd Qu.:109.23  
+##  Max.   :50.00             Max.   :134.91
 </code></pre>
 <p><br/> <br/></p>
 <h3 id="reading-data-from-a-file">Reading data from a file</h3>
@@ -470,6 +473,8 @@ on the type of data file.</p>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../1-basic-analyses/1a-index-and-summarize/" class="btn btn-neutral float-right" title="Indexing and Summarizing"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../0b-rmarkdown/" class="btn btn-neutral" title="Rmarkdown"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -502,6 +507,8 @@ on the type of data file.</p>
       
         <span><a href="../0b-rmarkdown/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
+      
+        <span style="margin-left: 15px"><a href="../../1-basic-analyses/1a-index-and-summarize/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

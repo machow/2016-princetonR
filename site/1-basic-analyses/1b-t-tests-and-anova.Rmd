@@ -4,6 +4,141 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(comment = "", cache=FALSE)
+knitr::opts_chunk$set(comment = "", error=FALSE)
 ```
 
+Background
+==========
+
+This simulated data is based off of training study run by David Moreau.
+In this study, he examined which of the following programs would be better for improving spatial memory:
+
+1. Aerobic exercise (`aer`) -- basically running on a treadmill.
+2. Working memory training (`wm`) -- memorizing locations while doing a distracting task on the computer.
+3. Something he called Designed Sport Training (`combo`), meant to combine spatial memory with consistent exercise.
+
+As shown in the diagram below, participants were tested on their spatial memory, then assigned to a program for a month. Afterward, their spatial memory was tested again.
+![Sport training](img/sport-training.png)
+
+```{r}
+wm_dat <- read.csv('../data/training_long.csv')
+```
+
+The working memory data set has `r nrow(wm_dat)` rows and `r ncol(wm_dat)` columns. 
+Below are the first 5 rows.
+
+```{r}
+head(wm_dat, 5)
+```
+
+Note that the `session`, `cond`, and `time` columns are factors.
+
+```{r}
+str(wm_dat)
+```
+
+The levels of each factor are..
+
+* **session**: `r levels(wm_dat$session)`
+* **cond**: `r levels(wm_dat$cond)`
+* **time**: `r levels(wm_dat$time)`
+
+**Note that session is just another way of expressing cond and time together**. That is, `session` is the same as..
+
+```{r}
+paste(wm_dat$cond, wm_dat$time, sep="_")
+```
+
+
+Analyses
+========
+
+What is the data argument?
+--------------------------
+
+Note that just like the `with` function, many functions like `boxplot` have an argument to let your refer directly to columns of data without using the `$` character. This is done using the `data` argument
+
+
+What are R formulas?
+--------------------
+
+Formulas in R are created using the `~` character. The formula `A ~ B` is best read as "A by B".
+In addition, formula `A ~ B + C` can be read as "A by B **and C**".
+This is well illustrated by the `boxplot` function.
+
+Boxplots
+=============
+
+```{r, }
+boxplot(wm_score ~ session, data=wm_dat)   # wm scores by session
+# if you want, the line below is equivalent
+# boxplot(data=wm_dat, wm_score ~ session)
+```
+
+However, as noted above the `session` column is a combination of `cond` **and** `time`. We can use the `+` sign in a formula to make the same plot with these columns.
+
+```{r}
+boxplot(wm_score ~ time + cond, data=wm_dat)     # wm scores by cond and time
+```
+
+It's a little annoying that the post- and pre-test measures are alternating in the plot.
+
+Descriptives
+============
+
+```{r}
+library(psych)
+descript <- describeBy(wm_dat$wm_score, group=wm_dat$session, mat = TRUE, digits=1)
+descript
+```
+
+Note that the post scores seem to differ between conditions:
+
+```{r}
+descript[c(1,3,5), c('group1', 'mean', 'se')]
+```
+
+ANOVA
+==============
+
+Assuming all of the pre-test scores were the same, we will just consider the post-test scores. The `aov` function let's use test whether the mean scores on the post-test were the same for all conditions.
+
+In terms of formulas we should say, "do `wm_score` means differ by `cond`".
+
+```{r}
+post <- subset(wm_dat, time == "post")
+fit <- aov(wm_score ~ cond, data=post)
+report <- anova(fit)
+report
+```
+
+The p-value is `r round(report[1,'Pr(>F)'], 4)`, so there is strong evidence that the means are **not** equal.
+
+We can use [Tukey's Honestly Significant Differences][tukey_hsd] procedure to test exactly which means are different from each other.
+This procedure tries to take into account the number of tests we've performed, in order to control the [Family Wise Error Rate][fwer].
+
+```{r}
+tuk <- TukeyHSD(fit)
+tuk
+```
+
+Each row is a test. For example, the first row tests whether the combo and aerobic means differed from eachother, and there is strong evidence (p = `r tuk$cond['combo-aer', 'p adj']`). Overall, it appears there's strong evidence that participants in the combo condition did better than the other two.
+
+The test that Tukey's HSD is modifying is called a [t-test][ttest]. We can run it directly using the `t.test` function..
+
+```{r}
+post_wm_combo <- subset(wm_dat, time == "post" & cond %in% c('wm', 'combo'))
+# notice that we use the same formula as the anova
+t.test(wm_score ~ session, data=post_wm_combo)
+```
+
+References
+==========
+
+* [stack overflow post on rounding output](http://stackoverflow.com/a/12135122/1144523)
+* [Quick-R anova page](http://www.statmethods.net/stats/anova.html)
+* [model formulas for regression](http://ww2.coastal.edu/kingw/statistics/R-tutorials/formulae.html)
+
+[tukey_hsd]: https://en.wikipedia.org/wiki/Tukey%27s_range_test
+[fwer]: https://en.wikipedia.org/wiki/Familywise_error_rate#Tukey.27s_procedure
+[ttest]: https://en.wikipedia.org/wiki/Student%27s_t-test

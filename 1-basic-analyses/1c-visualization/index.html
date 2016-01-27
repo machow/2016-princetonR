@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <title>plotting with ggplot - PrincetonR 2016</title>
+  
+
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "plotting with ggplot";
+    var mkdocs_page_url = "/1-basic-analyses/1c-visualization/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script src="../../js/theme.js"></script> 
+  <script src="../../doc/theme_tweak/js/theme.js"></script>
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> PrincetonR 2016</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../..">Home</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Getting Started</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../0-getting-started/0a-rstudio/">Rstudio</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../0-getting-started/0b-rmarkdown/">Rmarkdown</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../0-getting-started/0c-rbasics/">R language</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Basics</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../1a-index-and-summarize/">Indexing and Summarizing</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../1b-t-tests-and-anova/">t-tests and ANOVA</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">plotting with ggplot</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#data-visualization-with-ggplot2">Data Visualization with ggplot2</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">PrincetonR 2016</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Basics &raquo;</li>
+        
+      
+    
+    <li>plotting with ggplot</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        
+          <a href="https://github.com/machow/2016-princetonR" class="icon icon-github"> Edit on GitHub</a>
+        
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p><br/> <br/></p>
+<h3 id="data-visualization-with-ggplot2">Data Visualization with <code>ggplot2</code></h3>
+<p><code>ggplot2</code> is a package for plotting data. The "gg" stands for "grammar
+of graphics". To use <code>ggplot2</code>, first you must load the package (after
+installing).</p>
+<pre><code>library(ggplot2)
+
+## 
+## Attaching package: 'ggplot2'
+## 
+## The following objects are masked from 'package:psych':
+## 
+##     %+%, alpha
+</code></pre>
+<p><br/> <br/></p>
+<p>The code for creating a plot using ggplot is more complicated than using
+<code>boxplot()</code> or <code>hist()</code>. Here's an example that we'll walk through step
+by step:</p>
+<pre><code># We're going to use the 'describe' function from the psych package, so first load it:
+library(psych)
+
+# Let's create a random data set with 50 observations of reaction time in two conditions.
+mydata &lt;- data.frame(id = seq(1:50),  # create a column named "id" with the numbers (sequence) 1 through 50
+                     condition = rep(c("A", "B"), 25),  # create a "condition" column with A and B repeating
+                     rt = rnorm(n = 50, mean = 100, sd = 15))  # create a third column named "rt" with randomly generated data
+
+# Now, get the mean and standard error for each condition
+mydata.summary &lt;- describeBy(mydata, "condition")
+mydata.summary
+
+## group: A
+##            vars  n   mean    sd median trimmed   mad   min    max range
+## id            1 25  25.00 14.72   25.0   25.00 17.79  1.00  49.00 48.00
+## condition*    2 25   1.00  0.00    1.0    1.00  0.00  1.00   1.00  0.00
+## rt            3 25 100.25 13.48  100.4  100.28 12.13 70.92 131.17 60.25
+##            skew kurtosis   se
+## id         0.00    -1.34 2.94
+## condition*  NaN      NaN 0.00
+## rt         0.03    -0.26 2.70
+## -------------------------------------------------------- 
+## group: B
+##            vars  n  mean    sd median trimmed   mad   min    max range
+## id            1 25 26.00 14.72  26.00   26.00 17.79  2.00  50.00 48.00
+## condition*    2 25  2.00  0.00   2.00    2.00  0.00  2.00   2.00  0.00
+## rt            3 25 99.54 13.56 101.84  100.35 11.91 59.77 126.83 67.07
+##             skew kurtosis   se
+## id          0.00    -1.34 2.94
+## condition*   NaN      NaN 0.00
+## rt         -0.74     1.11 2.71
+
+mydata.plot &lt;- data.frame(condition = factor(c("A", "B")),
+                          meanRT = c(mydata.summary[[1]]$mean[3], mydata.summary[[2]]$mean[3]),
+                          se = c(mydata.summary[[1]]$se[3], mydata.summary[[2]]$se[3]))
+
+ggplot(mydata.plot, aes(x = condition, y = meanRT)) +
+  geom_bar(stat= "identity", width = .5) +
+  geom_errorbar(aes(ymin = meanRT - se, ymax = meanRT + se), width = .25)
+</code></pre>
+<p><img alt="" src="../1c-visualization_files/figure-markdown_strict/unnamed-chunk-2-1.png" /></p>
+<p><br/> <br/></p>
+<p>Let's go through the code step by step.</p>
+<p><br/></p>
+<p>First, we load the <code>psych</code> package and create our data.frame.</p>
+<pre><code># We're going to use the 'describe' function from the psych package, so first load it:
+library(psych)
+
+# Let's create a random data set with 50 observations of reaction time in two conditions.
+mydata &lt;- data.frame(id = seq(1:50),  # create a column named "id" with the numbers (sequence) 1 through 50
+                     condition = rep(c("A", "B"), 25),  # create a "condition" column with A and B repeating
+                     rt = rnorm(n = 50, mean = 100, sd = 15))  # create a third column named "rt" with randomly generated data
+</code></pre>
+<p>Then, we must calculate the mean reaction time and standard error of
+reaction time for each condition.</p>
+<pre><code>mydata.summary &lt;- describeBy(mydata, "condition")
+mydata.summary
+
+## group: A
+##            vars  n   mean    sd median trimmed   mad   min    max range
+## id            1 25  25.00 14.72   25.0   25.00 17.79  1.00  49.00 48.00
+## condition*    2 25   1.00  0.00    1.0    1.00  0.00  1.00   1.00  0.00
+## rt            3 25 100.25 13.48  100.4  100.28 12.13 70.92 131.17 60.25
+##            skew kurtosis   se
+## id         0.00    -1.34 2.94
+## condition*  NaN      NaN 0.00
+## rt         0.03    -0.26 2.70
+## -------------------------------------------------------- 
+## group: B
+##            vars  n  mean    sd median trimmed   mad   min    max range
+## id            1 25 26.00 14.72  26.00   26.00 17.79  2.00  50.00 48.00
+## condition*    2 25  2.00  0.00   2.00    2.00  0.00  2.00   2.00  0.00
+## rt            3 25 99.54 13.56 101.84  100.35 11.91 59.77 126.83 67.07
+##             skew kurtosis   se
+## id          0.00    -1.34 2.94
+## condition*   NaN      NaN 0.00
+## rt         -0.74     1.11 2.71
+</code></pre>
+<p>The <code>describeBy</code> function calculates a bunch of summary statistics for
+our data.frame, and does it separately for each condition. The result is
+two tables, one for each condition.</p>
+<p><br/></p>
+<p>We need to store the mean and standard error for the reaction time data
+in each condition. That's what the next 3 lines of code do:</p>
+<pre><code>mydata.plot &lt;- data.frame(
+</code></pre>
+<p>We're going to store what we need in a data.frame called "mydata.plot"</p>
+<pre><code>condition = factor(c("A", "B")),
+</code></pre>
+<p>The first column lists the two conditions, A and B. (Our data.frame will
+have 2 rows.)</p>
+<pre><code>meanRT = c(mydata.summary[[1]]$mean[3], mydata.summary[[2]]$mean[3]),
+</code></pre>
+<p>We're combining two things and storing them in a column named "meanRT".
+What do all of those brackets and numbers mean?</p>
+<p><br/></p>
+<p>The mydata.summary object, which was created by the describeBy function,
+is a special type of class called a List. Lists are like vectors, only
+instead of each element storing a single value, you can store many
+objects in a list - for example, more than one data.frame.</p>
+<p><br/></p>
+<p>Just like with vectors, we can index lists using brackets:</p>
+<pre><code>mydata.summary[1]
+
+## $A
+##            vars  n   mean    sd median trimmed   mad   min    max range
+## id            1 25  25.00 14.72   25.0   25.00 17.79  1.00  49.00 48.00
+## condition*    2 25   1.00  0.00    1.0    1.00  0.00  1.00   1.00  0.00
+## rt            3 25 100.25 13.48  100.4  100.28 12.13 70.92 131.17 60.25
+##            skew kurtosis   se
+## id         0.00    -1.34 2.94
+## condition*  NaN      NaN 0.00
+## rt         0.03    -0.26 2.70
+
+class(mydata.summary[1])
+
+## [1] "list"
+</code></pre>
+<p>Using a single set of brackets will let us select the first item in the
+list, but it's still of the class 'list'. It would be great if we could
+treat that table as a data.frame, so that we can work with it using the
+other things we know. That's exactly what the double set of brackets
+does:</p>
+<pre><code>mydata.summary[[1]]
+
+##            vars  n   mean    sd median trimmed   mad   min    max range
+## id            1 25  25.00 14.72   25.0   25.00 17.79  1.00  49.00 48.00
+## condition*    2 25   1.00  0.00    1.0    1.00  0.00  1.00   1.00  0.00
+## rt            3 25 100.25 13.48  100.4  100.28 12.13 70.92 131.17 60.25
+##            skew kurtosis   se
+## id         0.00    -1.34 2.94
+## condition*  NaN      NaN 0.00
+## rt         0.03    -0.26 2.70
+
+class(mydata.summary[[1]])
+
+## [1] "psych"      "describe"   "data.frame"
+</code></pre>
+<p>You'll see that the resulting object has three classes - "psych",
+"describe", and most useful for us, "data.frame". Now, we can use the $
+symbol to select a column by name.</p>
+<pre><code>mydata.summary[[1]]$mean
+
+## [1]  25.0000   1.0000 100.2517
+</code></pre>
+<p>This selects the column of means for condition A. We're interested in
+only the mean reaction time, so we can again use brackets to select the
+third element:</p>
+<pre><code>mydata.summary[[1]]$mean[3]
+
+## [1] 100.2517
+</code></pre>
+<p>This code says to select the third element of the column named "mean" of
+the content of the first item in the list "mydata.summary".</p>
+<p><br/></p>
+<p>Now, we can change the 1 to a 2 to select the mean reaction time for
+condition B, and combine them using <code>c()</code>.</p>
+<pre><code>c(mydata.summary[[1]]$mean[3], mydata.summary[[2]]$mean[3])
+
+## [1] 100.25170  99.54173
+</code></pre>
+<p>We store the result in a column of our new data.frame named "meanRT". We
+can do the exact same thing to select the standard error (se) of
+reaction time for each condition:</p>
+<pre><code>se = c(mydata.summary[[1]]$se[3], mydata.summary[[2]]$se[3]))
+</code></pre>
+<p>We end up with a data.frame that has two rows and three columns:</p>
+<pre><code>mydata.plot
+
+##   condition    meanRT       se
+## 1         A 100.25170 2.696155
+## 2         B  99.54173 2.712388
+</code></pre>
+<p><br/></p>
+<p>Now let's break down the ggplot code:</p>
+<pre><code>ggplot(mydata.plot, aes(x = condition, y = meanRT)) +
+</code></pre>
+<p>The <code>ggplot()</code> function creates an object of the class "ggplot". Here,
+we give it two arguments. The first tells it the name of our data.frame
+(mydata.plot), and the second tells it how to arrange the data on the x
+and y axes. We want two columns representing our conditions arranged
+along the x-axis, and the height of the bars to correspond to the mean
+reaction time in each condition. We use <code>aes()</code> to indicate this (it
+stands for <em>aesthetic mapping</em>).</p>
+<p><br/></p>
+<p>We've created a ggplot object with condition on the x-axis and mean
+reaction time in the y-axis, but we haven't specified what type of plot
+we want - a bar plot? Line plot? Something else? So, we add more to the
+ggplot object with the plus sign.</p>
+<pre><code>geom_bar(stat= "identity", width = .5) +
+</code></pre>
+<p><code>geom_bar()</code> indicates that we want a bar plot. We provide two
+arguments: <code>stat = "identity"</code> indicates that the height of the bars
+should be exactly what's in the meanRT column, and <code>width = .5</code> sets the
+width of the bars to 50% of the default width.</p>
+<pre><code>geom_errorbar(aes(ymin = meanRT - se, ymax = meanRT + se), width = .25)
+</code></pre>
+<p>And finally, we add another line to add errorbars to the plot using the
+<code>geom_errorbar()</code> function. Importantly, we need to specify how wide the
+bars should be using the <code>aes()</code> argument. Inside <code>aes()</code>, we set the
+minimum y-value for the bars to be the mean minus the standard error
+(meanRT - se), and the maximum y-value to be the mean plus the standard
+error (meanRT + se). We can also set the width using another argument.</p>
+<p><br/> <br/></p>
+<p><code>ggplot2</code> can make many other complex visualizations. You can read more
+about how to use it at <a href="http://docs.ggplot2.org/current/">http://docs.ggplot2.org/current/</a></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../1b-t-tests-and-anova/" class="btn btn-neutral" title="t-tests and ANOVA"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/machow/2016-princetonR" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../1b-t-tests-and-anova/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+
+</body>
+</html>

@@ -4,7 +4,7 @@
     
     <url>
      <loc>None/</loc>
-     <lastmod>2016-01-25</lastmod>
+     <lastmod>2016-01-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -13,19 +13,41 @@
         
     <url>
      <loc>None/0-getting-started/0a-rstudio/</loc>
-     <lastmod>2016-01-25</lastmod>
+     <lastmod>2016-01-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>None/0-getting-started/0b-rmarkdown/</loc>
-     <lastmod>2016-01-25</lastmod>
+     <lastmod>2016-01-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>None/0-getting-started/0c-rbasics/</loc>
-     <lastmod>2016-01-25</lastmod>
+     <lastmod>2016-01-27</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>None/1-basic-analyses/1a-index-and-summarize/</loc>
+     <lastmod>2016-01-27</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/1-basic-analyses/1b-t-tests-and-anova/</loc>
+     <lastmod>2016-01-27</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/1-basic-analyses/1c-visualization/</loc>
+     <lastmod>2016-01-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
