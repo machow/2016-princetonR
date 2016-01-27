@@ -17,6 +17,8 @@ Instructors and Princeton Email:
 How to Use This Course
 ----------------------
 
+[Download the zipped course materials here](https://github.com/machow/2016-princetonR/archive/master.zip)
+
 Believe it or not, everything used to create the pages of this site were done in R.
 This was done using three tools:
 
