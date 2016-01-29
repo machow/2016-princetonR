@@ -1,0 +1,115 @@
+---
+title: "Phonological Similarity and Memory Data"
+output: html_document
+params:
+  tasks: 
+    label: 'Task'
+    value: 'Rspan.long'
+    input: 'select'
+    choices: [R.scramb, Rspan.long, Rspan.short, Rspan.names.short, Rspan.names.long]
+    multiple: TRUE
+  dv: 'ACC.ser'
+---
+
+This data was collected as part of a set of experiments on memory. 
+In the experiments, participants switched between memorizing words, and reading irrelevent sentences.
+After being shown a certain number of to-be-remembered (**TBR**) words to memorize, participants were asked to recall as many of those words as possible. For example, if a trial had 2 words to memorize, participants would..
+
+see TBR word, read sentence, see new TBR word, read new sentence, recall words.
+
+Researchers were interested in the effect of **task** and **trialtype** on recall performance.
+
+The Data
+--------
+
+The data has 8 columns..
+
+* **task:** the experimental condition
+* **Subject:** id for each unique subject within a task
+* **trialnum:** 4 to 27 for each of the 27 trials participants completed (the first 3 were practice)
+* **trialtype:** the type of words participants needed to memorize on that trial
+* **TBR:** the to-be-rememberd word
+* **inpos:** the order of the TBR word (e.g. 0 was the first word shown)
+* **ACC.ser:** did they recall the right word in the right position?
+* **ACC.item:** did they recall the right word?
+
+```{r}
+dat <- read.csv('../data/scored_recall.csv')
+subset(dat, Subject == 8 & trialnum == 5)
+```
+
+Using rmarkdown params
+----------------------
+
+Here, we subset the data to only the tasks specified in params.
+The if condition let's us ignore this portion if we aren't knitting our document.
+
+```{r}
+# exists checks if the variable has been defined
+if (exists('params')) {
+  dat <- subset(dat, task %in% params$tasks)
+} else {
+  # could create a params list here, e.g.
+  # params = list(tasks = c(), dv = "")
+}
+```
+
+
+Pre-processing
+--------------
+
+Note that in on the bottom row, `inpos` is `NA`. This means that the participant recalled more words than were shown to them.
+The first thing we'll want to do is remove those `NA` rows, so that we're only considering valid recalls.
+
+```{r}
+dat <- subset(dat, !is.na(inpos))
+```
+
+Next, we'll average accuracy within each 
+```{r}
+# Can change the line below to configure choosing which variable to use
+dat$dv = dat$ACC.ser
+#
+dat_agg <- aggregate(dv ~ task + Subject + trialtype, data=dat, mean)
+head(dat_agg)
+```
+
+It's a little bit annoying that it isn't ordered by task and Subject anymore.
+We can fix that using the `order` function.
+```{r}
+row_ord <- with(dat_agg, order(task, Subject, trialtype))
+dat_ord <- dat_agg[row_ord,]
+```
+
+Finally, let's reduce our scores down to a single mean and standard deviation for each condition and trialtype.
+
+```{r}
+se <- function(x) { 
+  sqrt(var(x) / length(x)) 
+}
+means <- aggregate(dv ~ task + trialtype, dat_ord, mean)
+ses <- aggregate(dv ~ task + trialtype, dat_ord, se)
+
+meanse <- means
+meanse$se = ses$dv
+head(meanse)
+```
+
+
+Plotting
+--------
+
+```{r}
+library(ggplot2)
+
+# dodge is useful for moving points to horizontally so they don't overlap
+dodge = position_dodge(width=.1)
+# plot points with errorbars
+# we give all of the aesthetics we want as defaults to the ggplot function
+# and all additional aesthetics to specific geoms
+ggplot(meanse, aes(task, dv, color=trialtype)) + 
+  geom_point(position=dodge) +
+  geom_errorbar(aes(ymin=dv-se, ymax=dv+se), width=.1, position=dodge)
+
+```
+

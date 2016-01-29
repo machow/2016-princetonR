@@ -1,0 +1,58 @@
+---
+title: "homework for 2c — advanced R"
+output: html_document
+---
+
+1. Write an if statement that checks if `a` is a character, and if it is, changes it to an integer (using as.integer).
+
+```{r}
+
+a <- c('5', '6', '10')
+
+if (is.character(a)) {
+  a <- as.integer(a)
+}
+
+```
+
+2. Write a for loop that adds each number in `b` to the number before it.
+
+```{r}
+
+b <- c(1:3)
+
+for (ii in 2:length(b)) {
+  b[ii] = b[ii] + b[ii-1]
+}
+# the resulting array should be c(1, 3, 5)
+```
+
+3. Write a function that takes a vector `x`, and adds 10 to it (be sure to return `x`). Call it using `c`.
+
+```{r}
+# uncomment line below and define function
+ f <- function(x) {
+   x + 10
+ }
+
+# call function below
+c <- 1:3
+f(c)
+```
+
+4. Let's connect the previous three ideas together. Write a function, `adder`, that takes an argument, `x`. This function should..
+  * check if `x` is an integer, and if it isn't then make it one.
+  * use a for loop to add the each number to the number before it
+  * return the array with the new numbers in it
+  
+```{r}
+function(x){
+  # make x an integer
+  if (is.character(x)) x = as.integer(x)
+  # loop over x
+  for (ii in 2:length(x)) x[ii] = x[ii] + x[ii-1]
+  # return x
+  x
+}
+```
+

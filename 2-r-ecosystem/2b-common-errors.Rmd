@@ -1,0 +1,108 @@
+---
+title: "Common Errors and Debugging"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+# this chunk lets us include errors in our code
+knitr::opts_chunk$set(error=TRUE)
+```
+
+Variable does not exist
+-----------------------
+```{r}
+a + 1
+```
+
+Calling a function without the necessary arguments
+--------------------------------------------------
+
+For example, using the `with` function requires something like `with(data, expr)`.
+Here, `data` might be the data.frame you're using, and `expr` will be an expression that uses its columns.
+
+```{r}
+dat <- data.frame(a=1:10)
+with(dat, a + 1)    # good
+with()              #bad
+```
+
+
+You tried to refer to your data, but used the wrong variable name
+-----------------------------------------------------------------
+
+This is a very common error that can produce cryptic errors.
+For example, you might have a variable called `dat`, but you accidentally try to refer to it as `df` or `data`, which are actually R functions!
+
+```{r}
+dat <- data.frame(a=1:6)
+colMeans(dat)
+
+colMeans(df)
+colMeans(data)
+```
+
+Because `df` and `data` are functions, you can get a lot of different errors, depending on what you try to do with them.
+
+```{r}
+# try to subset
+subset(df, a < 5)
+# try to access column
+df$a
+# try to make boxplot
+boxplot(df)
+```
+
+On the topic of subset, you might not get an error, but it may behave unexpectedly.
+
+
+```{r}
+b <- 3
+
+subset(dat, b < 5)
+```
+
+Notice that `dat` doesn't have a `b` column, so R used the variable `b` that we created outside of the data.frame. 
+This can create problems if you mispell the name of a column in a data.frame, but your mispelling is the name of an existing varible.
+
+You try to use recycling when creating a data.frame, but the vector lengths don't divide evenly
+----------------------------------------------------------------------------------------
+
+R will recycle values when creating a data.frame. This means that you can do something like..
+
+```{r}
+# works since 4 / 2 is 2
+data.frame(a=1:4, b=1:2)
+
+# doesn't work since 4 / 3 is not a whole number
+data.frame(a=1:4, b=1:3)
+```
+
+You try to add things that aren't numbers
+--------------------------------------
+
+```{r}
+1 + "a"
+"a" + "a"
+
+fact <- factor(c('a','a','b'))
+fact + fact
+```
+
+Note that the last expression, adding two factors only returned a warning.
+
+You data has NA or NaN values
+-----------------------------
+
+These values can be produced when performing an operation that isn't defined, like `sqrt(-1)`. Many functions have an `na.rm` argument that will ignore `NA` and `NaN`
+
+```{r}
+sqrt(-1)
+
+NA + 1       # NA
+
+sum(sqrt(-1:10))
+
+# use the na.rm argument
+sum(sqrt(-1:10), na.rm=TRUE)
+```
+

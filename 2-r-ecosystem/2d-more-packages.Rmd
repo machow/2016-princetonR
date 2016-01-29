@@ -1,0 +1,33 @@
+---
+title: "More from R Packages"
+output: html_document
+params: 
+  a_variable: "I am a variable"
+---
+
+Parameterized reports in Rmarkdown
+----------------------------------
+
+```{r, eval=FALSE}
+library(rmarkdown)
+
+render('', params="ask")
+```
+
+For example, if you render this report, you get..
+
+```{r}
+
+params$a_variable
+
+```
+
+
+tidyr
+-----
+
+dplyr
+-----
+
+Shiny
+-----

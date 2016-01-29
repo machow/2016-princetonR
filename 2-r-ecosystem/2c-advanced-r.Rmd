@@ -1,0 +1,84 @@
+---
+title: "Advanced R"
+output: html_document
+---
+
+If statement
+------------
+
+```{r}
+checks_out <- TRUE
+if (checks_out) {
+  print("everything looks good")
+}
+
+if (!checks_out) {
+  print("it doesn't check out")
+} else {
+  print("no wait it does check out")
+}
+
+
+```
+
+ifelse function
+---------------
+
+```{r}
+dat <- data.frame(number=-2:2)
+dat$label <- ifelse(dat$number < 0, 'negative', 'non-negative')
+dat
+```
+
+tapply
+----------------
+
+```{r}
+dat <- data.frame(score = c(rnorm(3, mean=0),rnorm(3, mean=10)), 
+                  group = rep(c('A','B'), each=3))               
+dat
+
+means <-   tapply(dat$score, dat$group, mean)
+std_dev <- tapply(dat$score, dat$group, sd)
+
+means
+std_dev
+data.frame(means, std_dev)
+```
+
+aggregate
+-----------------
+
+```{r}
+dat <- data.frame(group1 = rep(c('A', 'B'), each=4),
+                  group2 = rep(c('X', 'Y'), each=2),
+                  val = 1:8)
+dat
+aggregate(val ~ group1 + group2, data=dat, mean)
+```
+
+
+for loop
+---------------
+
+```{r}
+fib <- c(1,1)
+for (ii in 3:10){
+  # fill in another entry of fibonnaci sequence
+  # by adding the previous two entries together
+  fib[ii] <- fib[ii-2] + fib[ii-1]
+}
+fib
+
+dat <- data.frame(scoresA = rnorm(10),
+                  scoresB = rnorm(10, 2))
+
+
+for (col in names(dat)) {
+  dat[col] = -1 * dat[col]
+}
+
+# same as doing: dat * -1
+
+```
+
