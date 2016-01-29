@@ -9,7 +9,7 @@ Main Problems
 1. Create a vector named "odd" with all odd numbers from 1 - 13.
 
 ``` {r}
-odd <- c(1, 3, 5, 7, 9, 11, 13)
+
 ```
 
 <br/>
@@ -17,7 +17,7 @@ odd <- c(1, 3, 5, 7, 9, 11, 13)
 2. Select the third element and raise it to the 5th power.
 
 ``` {r}
-odd[3] ^ 5
+
 ```
 
 <br/>
@@ -25,7 +25,7 @@ odd[3] ^ 5
 3. Create another vector named "even" with all even numbers from 2 - 14.
 
 ``` {r}
-even <- c(2, 4, 6, 8, 10, 12, 14)
+
 ```
 
 <br/>
@@ -33,7 +33,7 @@ even <- c(2, 4, 6, 8, 10, 12, 14)
 4. Create a data.frame named "numbers" with two columns: one named "apple" that contains your vector of odd numbers, and one named "orange" that contains your vector of even numbers.
 
 ``` {r}
-numbers <- data.frame(apple = odd, orange = even)
+
 ```
 
 <br/>
@@ -41,7 +41,7 @@ numbers <- data.frame(apple = odd, orange = even)
 5. Select all rows where "orange" is greater than 7.
 
 ``` {r}
-numbers[numbers$orange > 7, ]
+
 ```
 
 <br/>
@@ -49,7 +49,7 @@ numbers[numbers$orange > 7, ]
 6. Calculate the mean of the full "apple" column.
 
 ``` {r}
-mean(numbers$apple)
+
 ```
 
 7. Without using the `$`, create a third column called `total` that is apples plus oranges
